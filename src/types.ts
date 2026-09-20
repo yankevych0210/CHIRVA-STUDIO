@@ -21,6 +21,7 @@ export interface ServiceItem {
   deliverables: string[];
   recommendedFor: string;
   iconName: string;
+  isHighlighted?: boolean;
 }
 
 export interface PricingPlan {
