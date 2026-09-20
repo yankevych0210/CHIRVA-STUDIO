@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS — Instagram-Inspired Creator UI
+═══════════════════════════════════════════════ */
+:root {
+  /* Base */
+  --bg-primary:   #FFFFFF;
+  --bg-surface:   #FAFAFA;
+  --bg-surface-2: #F5F5F5;
+  --bg-dark:      #0A0A0A;
+
+  /* Text */
+  --text-main:    #1A1A1A;
+  --text-muted:   #737373;
+  --text-light:   #ABABAB;
+
+  /* Instagram Gradient (used as accent) */
+  --ig-grad: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  --ig-grad-subtle: linear-gradient(135deg, rgba(240,148,51,0.12) 0%, rgba(188,24,136,0.12) 100%);
+
+  /* Gold (kept for brand continuity) */
+  --gold:         #C5A059;
+  --gold-light:   #E8C97A;
+
+  /* Border */
+  --border:       rgba(0, 0, 0, 0.09);
+  --border-strong: rgba(0, 0, 0, 0.18);
+
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:  'DM Mono', ui-monospace, monospace;
+
+  /* Radius */
+  --r-sm:   12px;
+  --r-md:   18px;
+  --r-lg:   24px;
+  --r-xl:   32px;
+  --r-full: 9999px;
+}
+
+/* ─── Base Reset ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Typography Helpers ─────────────────────── */
+.font-serif { font-family: var(--font-serif); }
+
+.font-mono-tag {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* ─── Container ──────────────────────────────── */
+.container-custom {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+@media (min-width: 640px)  { .container-custom { padding: 0 2rem; } }
+@media (min-width: 1024px) { .container-custom { padding: 0 3rem; } }
+
+/* ═══════════════════════════════════════════════
+   INSTAGRAM STORY RING — Avatar wrapper
+═══════════════════════════════════════════════ */
+.ig-story-ring {
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--ig-grad);
+}
+.ig-story-ring-inner {
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   INSTAGRAM GRADIENT HELPERS
+═══════════════════════════════════════════════ */
+.ig-gradient-text {
+  background: var(--ig-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ig-gradient-bg {
+  background: var(--ig-grad);
+}
+
+.ig-gradient-border {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.ig-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--ig-grad);
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════ */
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-150%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes story-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+
+/* PRIMARY — Dark pill */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: var(--bg-dark);
+  color: #fff !important;
+  padding: 0.8rem 2rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease,
+              background 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primary:hover {
+  background: #C5A059;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197,160,89,0.4);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+/* SECONDARY — White ghost */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: transparent;
+  color: var(--text-main) !important;
+  padding: 0.8rem 2rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1.5px solid var(--border-strong);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.btn-secondary:active { transform: translateY(0); }
+
+/* INSTAGRAM GRADIENT BUTTON */
+.btn-ig {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: var(--ig-grad);
+  color: #fff !important;
+  padding: 0.8rem 2rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease,
+              filter 0.25s ease;
+  box-shadow: 0 4px 18px rgba(220,39,67,0.3);
+}
+
+.btn-ig::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.25) 50%, transparent 65%);
+  transform: translateX(-150%) skewX(-15deg);
+  pointer-events: none;
+}
+
+.btn-ig:hover::before { animation: shimmer-slide 0.55s ease forwards; }
+
+.btn-ig:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(220,39,67,0.45);
+  filter: brightness(1.05);
+}
+
+.btn-ig:active { transform: translateY(0); }
+
+/* GOLD CTA */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #C5A059, #D4B06A, #A8833E);
+  color: #FAFAFA !important;
+  padding: 0.8rem 2rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, filter 0.25s ease;
+  box-shadow: 0 4px 18px rgba(197,160,89,0.35);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(197,160,89,0.5);
+  filter: brightness(1.08);
+}
+
+.btn-gold:active { transform: translateY(0); }
+
+/* PILL tag */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  padding: 0.45rem 1rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pill:hover {
+  border-color: rgba(220, 39, 67, 0.4);
+  color: #dc2743;
+  background: rgba(220, 39, 67, 0.05);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════
+   BADGE / CHIP
+═══════════════════════════════════════════════ */
+.badge-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* IG-gradient badge */
+.badge-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--ig-grad-subtle);
+  border: 1px solid rgba(220,39,67,0.15);
+  border-radius: var(--r-full);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background-clip: padding-box;
+}
+
+/* ═══════════════════════════════════════════════
+   CARD BASE
+═══════════════════════════════════════════════ */
+.card-ig {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-ig:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+}
+
+/* ─── Scrollbars ─────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
