@@ -63,6 +63,8 @@ export const InstagramCTA: React.FC = () => {
             <div className="pt-6 border-t border-white/20 flex flex-wrap items-center justify-center gap-6 text-sm text-white/60 font-medium">
               <span>@{CREATOR_INFO.instagramHandle}</span>
               <span>·</span>
+              <span>Kremenchuk, Ukraine</span>
+              <span>·</span>
               <span className="inline-flex items-center gap-1">
                 <span>Fast Reply in Direct</span>
                 <Zap className="w-3.5 h-3.5 text-white/80" />

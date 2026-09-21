@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin, Play, Heart, Bookmark } from 'lucide-react';
+import { ArrowUpRight, Play, Heart, Bookmark } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
 import { ScrollReveal } from './ScrollReveal';
@@ -22,15 +22,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
 
           {/* Left: Text Content */}
           <div className="lg:col-span-6 flex flex-col items-start space-y-8">
-
-            {/* Location badge */}
-            <ScrollReveal animation="fade-up" delay={50}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAFAFA] border border-[#EBEBEB] text-xs font-medium text-[#737373]">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <MapPin className="w-3.5 h-3.5 text-black" />
-                <span>{CREATOR_INFO.location}</span>
-              </div>
-            </ScrollReveal>
 
             {/* Headline */}
             <ScrollReveal animation="fade-up" delay={150}>
@@ -148,7 +139,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                             <span>chirva.cm</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-black" />
                           </div>
-                          <div className="text-xs text-[#737373]">Content Creator & Visual Strategist</div>
+                          <div className="text-xs text-[#737373]">Кременчук · Content Creator</div>
                         </div>
                         <a
                           href={CREATOR_INFO.instagramUrl}
