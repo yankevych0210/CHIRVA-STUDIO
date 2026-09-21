@@ -1,6 +1,7 @@
 import { ArrowUpRight, MapPin, Play, Heart, Bookmark } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
+import { ScrollReveal } from './ScrollReveal';
 
 interface HeroProps {
   onOpenContact: () => void;
@@ -8,149 +9,174 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => {
   return (
-    <section id="hero" className="relative pt-20 pb-12 md:pt-28 md:pb-16 bg-white overflow-hidden">
+    <section id="hero" className="relative pt-24 pb-14 md:pt-32 md:pb-20 bg-white overflow-hidden">
 
       {/* Subtle background ambient glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] opacity-40 rounded-full blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.05) 0%, transparent 70%)' }} />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-30 rounded-full blur-3xl pointer-events-none"
+      <div className="absolute top-0 right-0 w-[550px] h-[550px] opacity-40 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.06) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] opacity-30 rounded-full blur-3xl pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%)' }} />
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-          {/* Left: Text */}
-          <div className="lg:col-span-6 flex flex-col items-start space-y-7">
+          {/* Left: Text Content */}
+          <div className="lg:col-span-6 flex flex-col items-start space-y-8">
 
             {/* Location badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAFAFA] border border-[#EBEBEB] text-xs font-semibold text-[#737373]">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <MapPin className="w-3.5 h-3.5 text-black" />
-              <span>{CREATOR_INFO.location}</span>
-            </div>
+            <ScrollReveal animation="fade-up" delay={50}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAFAFA] border border-[#EBEBEB] text-xs font-medium text-[#737373]">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <MapPin className="w-3.5 h-3.5 text-black" />
+                <span>{CREATOR_INFO.location}</span>
+              </div>
+            </ScrollReveal>
 
             {/* Headline */}
-            <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#737373]">
-                Content Creator · Visual Strategist
-              </p>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
-                Візуальна естетика,{' '}
-                <span className="italic font-normal text-black">
-                  яка закохує
-                </span>{' '}
-                <br />в бренд та будує довіру
-              </h1>
-            </div>
+            <ScrollReveal animation="fade-up" delay={150}>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-[1px] bg-black/30" />
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#737373]">
+                    Content Creator · Visual Strategist
+                  </p>
+                </div>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
+                  Візуальна естетика,{' '}
+                  <span className="italic font-normal text-black relative inline-block">
+                    яка закохує
+                    <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
+                  </span>{' '}
+                  <br />в бренд та будує довіру
+                </h1>
+              </div>
+            </ScrollReveal>
 
             {/* Bio */}
-            <p className="text-base text-[#737373] max-w-lg leading-relaxed font-normal">
-              {CREATOR_INFO.heroDescription}
-            </p>
+            <ScrollReveal animation="fade-up" delay={250}>
+              <p className="text-base sm:text-lg text-[#52525B] max-w-lg leading-relaxed font-normal">
+                {CREATOR_INFO.heroDescription}
+              </p>
+            </ScrollReveal>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <a
-                href={CREATOR_INFO.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ig py-3.5 px-7"
-              >
-                <InstagramIcon className="w-4 h-4" />
-                <span>Написати в Direct</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <a
-                href={CREATOR_INFO.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary py-3.5 px-7"
-              >
-                <span>@{CREATOR_INFO.instagramHandle}</span>
-              </a>
-            </div>
+            <ScrollReveal animation="fade-up" delay={350}>
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a
+                  href={CREATOR_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ig py-3.5 px-7"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                  <span>Написати в Direct</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+                <a
+                  href={CREATOR_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary py-3.5 px-7"
+                >
+                  <span>@{CREATOR_INFO.instagramHandle}</span>
+                </a>
+              </div>
+            </ScrollReveal>
 
             {/* Stats */}
-            <div className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-6">
-              {CREATOR_INFO.heroBadges.map((badge, idx) => (
-                <div key={idx} className="space-y-1">
-                  <div className="font-serif text-2xl sm:text-3xl font-semibold text-black">
-                    {badge.value}
+            <ScrollReveal animation="fade-up" delay={450} className="w-full">
+              <div className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-6">
+                {CREATOR_INFO.heroBadges.map((badge, idx) => (
+                  <div key={idx} className="space-y-1">
+                    <div className="font-serif text-2xl sm:text-3xl font-semibold text-black">
+                      {badge.value}
+                    </div>
+                    <div className="text-[11px] text-[#737373] font-medium uppercase tracking-wider leading-tight">
+                      {badge.label}
+                    </div>
                   </div>
-                  <div className="text-[11px] text-[#737373] font-semibold uppercase tracking-wider leading-tight">
-                    {badge.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Right: Instagram Profile Card */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[400px]">
+            <ScrollReveal animation="scale-up" delay={200} className="w-full max-w-[420px]">
+              <div className="relative w-full">
 
-              {/* Main photo — Instagram post style */}
-              <div className="relative rounded-[32px] overflow-hidden bg-[#FAFAFA] border border-[#EBEBEB] shadow-xl"
-                style={{ aspectRatio: '4/5' }}>
+                {/* Main photo card */}
+                <div className="relative rounded-[32px] overflow-hidden bg-[#FAFAFA] border border-black/10 shadow-2xl group"
+                  style={{ aspectRatio: '4/5' }}>
 
-                <img
-                  src="/images/hero.png"
-                  alt="Женя Чирва"
-                  className="w-full h-full object-cover object-top"
-                  loading="eager"
-                />
+                  <img
+                    src="/images/hero.png"
+                    alt="Женя Чирва"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    loading="eager"
+                  />
 
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-                {/* IG-style like & save buttons */}
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform">
-                    <Heart className="w-5 h-5 text-[#1A1A1A] fill-[#1A1A1A]" />
+                  {/* Status Tag Overlay */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
+                    <span>REC 4K 60FPS</span>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform">
-                    <Bookmark className="w-5 h-5 text-[#1A1A1A]" />
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform">
-                    <Play className="w-4 h-4 text-[#1A1A1A] fill-[#1A1A1A] ml-0.5" />
-                  </div>
-                </div>
 
-                {/* Bottom caption card */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white shadow-lg">
-                    <div className="flex items-center gap-3">
-                      {/* Story ring avatar */}
-                      <div className="ig-story-ring w-10 h-10 shrink-0">
-                        <div className="ig-story-ring-inner w-full h-full">
-                          <img src="/images/hero.png" alt="avatar"
-                            className="w-full h-full object-cover" />
+                  {/* IG-style interactive action buttons */}
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3.5">
+                    <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                      <Heart className="w-5 h-5 text-[#1A1A1A] fill-[#1A1A1A]" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                      <Bookmark className="w-5 h-5 text-[#1A1A1A]" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                      <Play className="w-4 h-4 text-[#1A1A1A] fill-[#1A1A1A] ml-0.5" />
+                    </div>
+                  </div>
+
+                  {/* Bottom caption card */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl">
+                      <div className="flex items-center gap-3">
+                        {/* Story ring avatar */}
+                        <div className="ig-story-ring w-10 h-10 shrink-0">
+                          <div className="ig-story-ring-inner w-full h-full">
+                            <img src="/images/hero.png" alt="avatar"
+                              className="w-full h-full object-cover" />
+                          </div>
                         </div>
+                        <div>
+                          <div className="font-semibold text-sm text-[#1A1A1A] flex items-center gap-1.5">
+                            <span>chirva.cm</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                          </div>
+                          <div className="text-xs text-[#737373]">Кременчук · Content Creator</div>
+                        </div>
+                        <a
+                          href={CREATOR_INFO.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-auto btn-ig py-1.5 px-4 text-xs"
+                          style={{ fontSize: '0.7rem' }}
+                        >
+                          Слідкувати
+                        </a>
                       </div>
-                      <div>
-                        <div className="font-semibold text-sm text-[#1A1A1A]">chirva.cm</div>
-                        <div className="text-xs text-[#737373]">Кременчук · Content Creator</div>
-                      </div>
-                      <a
-                        href={CREATOR_INFO.instagramUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto btn-ig py-1.5 px-4 text-xs"
-                        style={{ fontSize: '0.7rem' }}
-                      >
-                        Слідкувати
-                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Floating badge — Reels */}
-              <div className="absolute -top-3 -left-3 px-4 py-2 rounded-full bg-white border border-[#EBEBEB] shadow-lg flex items-center gap-2 text-xs font-semibold text-[#1A1A1A]">
-                <Play className="w-3 h-3 fill-black text-black" />
-                Reels & UGC
+                {/* Floating badge — Reels */}
+                <div className="absolute -top-3 -left-3 px-4 py-2.5 rounded-full bg-white border border-black/10 shadow-xl flex items-center gap-2 text-xs font-semibold text-[#1A1A1A]">
+                  <Play className="w-3.5 h-3.5 fill-black text-black" />
+                  <span>Reels & UGC Production</span>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
 
         </div>
@@ -158,3 +184,4 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
     </section>
   );
 };
+
