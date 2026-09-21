@@ -2,8 +2,6 @@ import { Heart, MessageCircle, Play, ArrowUpRight } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { INSTAGRAM_POSTS, CREATOR_INFO } from '../data/portfolioData';
 
-const igGradient = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
-
 export const InstagramFeed: React.FC = () => {
   return (
     <section className="py-14 md:py-20 relative bg-[#FAFAFA]">
@@ -13,20 +11,12 @@ export const InstagramFeed: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div className="space-y-3 max-w-xl">
             <span className="badge-editorial">
-              <InstagramIcon className="w-3.5 h-3.5" style={{ color: '#dc2743' }} />
+              <InstagramIcon className="w-3.5 h-3.5 text-black" />
               <span>@{CREATOR_INFO.instagramHandle}</span>
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
               Більше живого контенту — <br />
-              <span
-                className="italic font-normal"
-                style={{
-                  background: igGradient,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
+              <span className="italic font-normal text-black">
                 в Instagram
               </span>
             </h2>

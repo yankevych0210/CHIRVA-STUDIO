@@ -16,7 +16,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1A1A1A] flex flex-col font-sans selection:bg-pink-100">
+    <div className="min-h-screen bg-white text-[#1A1A1A] flex flex-col font-sans selection:bg-black selection:text-white">
       {/* Fixed Navigation Header */}
       <Header onOpenContact={handleOpenInstagram} />
 

@@ -17,13 +17,15 @@
   --text-muted:   #737373;
   --text-light:   #ABABAB;
 
-  /* Instagram Gradient (used as accent) */
-  --ig-grad: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  --ig-grad-subtle: linear-gradient(135deg, rgba(240,148,51,0.12) 0%, rgba(188,24,136,0.12) 100%);
+  /* Minimalist Monochromatic Theme */
+  --accent-black: #000000;
+  --accent-dark: #18181B;
+  --ig-grad: linear-gradient(135deg, #18181B 0%, #09090B 100%);
+  --ig-grad-subtle: linear-gradient(135deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 100%);
 
-  /* Gold (kept for brand continuity) */
-  --gold:         #C5A059;
-  --gold-light:   #E8C97A;
+  /* Gold accent (optional accent) */
+  --gold:         #18181B;
+  --gold-light:   #3F3F46;
 
   /* Border */
   --border:       rgba(0, 0, 0, 0.09);
@@ -89,45 +91,35 @@ img, video {
 @media (min-width: 1024px) { .container-custom { padding: 0 3rem; } }
 
 /* ═══════════════════════════════════════════════
-   INSTAGRAM STORY RING — Avatar wrapper
+   SLEEK AVATAR RING — Avatar wrapper
 ═══════════════════════════════════════════════ */
 .ig-story-ring {
-  padding: 3px;
+  padding: 2.5px;
   border-radius: 50%;
-  background: var(--ig-grad);
+  background: linear-gradient(135deg, #000000 0%, #3f3f46 100%);
 }
 .ig-story-ring-inner {
   border-radius: 50%;
-  border: 2.5px solid #fff;
+  border: 2px solid #fff;
   overflow: hidden;
 }
 
 /* ═══════════════════════════════════════════════
-   INSTAGRAM GRADIENT HELPERS
+   MINIMALIST HELPERS
 ═══════════════════════════════════════════════ */
 .ig-gradient-text {
-  background: var(--ig-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .ig-gradient-bg {
-  background: var(--ig-grad);
+  background: #000000;
 }
 
 .ig-gradient-border {
-  border: 2px solid transparent;
-  background-clip: padding-box;
+  border: 1px solid #000000;
   position: relative;
-}
-.ig-gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: var(--ig-grad);
-  z-index: -1;
 }
 
 /* ═══════════════════════════════════════════════
@@ -169,18 +161,19 @@ img, video {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
-  border: none;
+  border: 1px solid var(--bg-dark);
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
               box-shadow 0.3s ease,
               background 0.3s ease;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
 .btn-primary:hover {
-  background: #C5A059;
+  background: #27272A;
+  border-color: #27272A;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(197,160,89,0.4);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 
 .btn-primary:active { transform: translateY(0); }
@@ -215,7 +208,7 @@ img, video {
 
 .btn-secondary:active { transform: translateY(0); }
 
-/* INSTAGRAM GRADIENT BUTTON */
+/* BLACK CTA BUTTON */
 .btn-ig {
   position: relative;
   overflow: hidden;
@@ -223,7 +216,7 @@ img, video {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  background: var(--ig-grad);
+  background: #000000;
   color: #fff !important;
   padding: 0.8rem 2rem;
   border-radius: var(--r-full);
@@ -232,19 +225,19 @@ img, video {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
-  border: none;
+  border: 1px solid #000000;
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
               box-shadow 0.3s ease,
-              filter 0.25s ease;
-  box-shadow: 0 4px 18px rgba(220,39,67,0.3);
+              background 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
 .btn-ig::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.25) 50%, transparent 65%);
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.15) 50%, transparent 65%);
   transform: translateX(-150%) skewX(-15deg);
   pointer-events: none;
 }
@@ -252,14 +245,15 @@ img, video {
 .btn-ig:hover::before { animation: shimmer-slide 0.55s ease forwards; }
 
 .btn-ig:hover {
+  background: #27272A;
+  border-color: #27272A;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(220,39,67,0.45);
-  filter: brightness(1.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
 .btn-ig:active { transform: translateY(0); }
 
-/* GOLD CTA */
+/* ACCENT BLACK CTA */
 .btn-gold {
   position: relative;
   overflow: hidden;
@@ -267,7 +261,7 @@ img, video {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  background: linear-gradient(135deg, #C5A059, #D4B06A, #A8833E);
+  background: #18181B;
   color: #FAFAFA !important;
   padding: 0.8rem 2rem;
   border-radius: var(--r-full);
@@ -276,16 +270,17 @@ img, video {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
-  border: none;
+  border: 1px solid #18181B;
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, filter 0.25s ease;
-  box-shadow: 0 4px 18px rgba(197,160,89,0.35);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, background 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
 }
 
 .btn-gold:hover {
+  background: #000000;
+  border-color: #000000;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(197,160,89,0.5);
-  filter: brightness(1.08);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
 }
 
 .btn-gold:active { transform: translateY(0); }
@@ -309,9 +304,9 @@ img, video {
 }
 
 .btn-pill:hover {
-  border-color: rgba(220, 39, 67, 0.4);
-  color: #dc2743;
-  background: rgba(220, 39, 67, 0.05);
+  border-color: #000000;
+  color: #000000;
+  background: rgba(0,0,0,0.04);
   transform: translateY(-1px);
 }
 
@@ -334,21 +329,21 @@ img, video {
   color: var(--text-muted);
 }
 
-/* IG-gradient badge */
+/* Black badge */
 .badge-ig {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.85rem;
-  background: var(--ig-grad-subtle);
-  border: 1px solid rgba(220,39,67,0.15);
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
   border-radius: var(--r-full);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  background-clip: padding-box;
 }
 
 /* ═══════════════════════════════════════════════

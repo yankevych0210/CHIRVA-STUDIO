@@ -51,8 +51,7 @@ export const About: React.FC = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-4 h-4 fill-[#dc2743] text-[#dc2743]"
-                      style={{ filter: 'drop-shadow(0 2px 4px rgba(220,39,67,0.3))' }}
+                      className="w-4 h-4 fill-black text-black"
                     />
                   ))}
                   <span className="ml-1.5 text-xs font-bold text-[#1A1A1A]">5.0</span>
@@ -78,15 +77,7 @@ export const About: React.FC = () => {
               <span className="badge-editorial">ПРО МЕНЕ • ФІЛОСОФІЯ</span>
               <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
                 Привіт, я Женя. <br />
-                <span
-                  className="italic font-normal"
-                  style={{
-                    background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
+                <span className="italic font-normal text-black">
                   Створюю візуальні історії
                 </span>
               </h2>
@@ -105,23 +96,14 @@ export const About: React.FC = () => {
               {pillars.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-white border border-[#EBEBEB] shadow-sm space-y-2 hover:border-rose-200 hover:shadow-md transition-all duration-300"
+                  className="p-5 rounded-2xl bg-white border border-[#EBEBEB] shadow-sm space-y-2 hover:border-black/30 hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-serif text-xl font-light"
-                      style={{
-                        background: 'linear-gradient(45deg, #f09433, #dc2743)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}
-                    >
+                    <span className="font-serif text-xl font-medium text-black">
                       {item.number}
                     </span>
-                    <div className="w-8 h-8 rounded-xl flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, rgba(240,148,51,0.12), rgba(188,24,136,0.12))' }}>
-                      <item.icon className="w-4 h-4" style={{ color: '#dc2743' }} />
+                    <div className="w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center">
+                      <item.icon className="w-4 h-4 text-white" />
                     </div>
                   </div>
                   <h3 className="font-semibold text-sm text-[#1A1A1A]">{item.title}</h3>

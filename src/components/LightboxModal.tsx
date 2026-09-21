@@ -49,7 +49,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose, onI
           {/* Metric badge overlay */}
           {item.metrics && (
             <div className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-[#141312]/80 backdrop-blur-md text-white text-xs font-mono font-semibold flex items-center gap-1.5 border border-white/10">
-              <Eye className="w-3.5 h-3.5 text-[#e6683c]" />
+              <Eye className="w-3.5 h-3.5 text-white" />
               <span>{item.metrics}</span>
             </div>
           )}
@@ -65,7 +65,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose, onI
                 {item.categoryLabel}
               </span>
               {item.brand && (
-                <span className="text-xs font-mono font-semibold text-[#dc2743] uppercase tracking-wider">
+                <span className="text-xs font-mono font-semibold text-black uppercase tracking-wider">
                   • {item.brand}
                 </span>
               )}
@@ -90,7 +90,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose, onI
                 <ul className="space-y-2">
                   {item.deliverables.map((del, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-xs text-[#6E6962]">
-                      <Check className="w-3.5 h-3.5 text-[#dc2743]" />
+                      <Check className="w-3.5 h-3.5 text-black" />
                       <span>{del}</span>
                     </li>
                   ))}

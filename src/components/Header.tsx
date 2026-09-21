@@ -60,12 +60,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
             onClick={(e) => handleNavClick(e, 'hero')}
             className="group flex items-center gap-3 text-decoration-none"
           >
-            {/* IG Story-ring Monogram */}
-            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }} className="group-hover:scale-105 transition-transform duration-300">
+            {/* Story-ring Monogram */}
+            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #000000, #3f3f46)' }} className="group-hover:scale-105 transition-transform duration-300">
               <div style={{ background: '#fff', borderRadius: '50%', padding: '2px' }}>
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center bg-black"
                 >
                   <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.85rem', fontWeight: 700, color: '#fff', letterSpacing: '0.05em', userSelect: 'none' }}>
                     ЖЧ
@@ -78,15 +77,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
               <span className="text-xs font-semibold tracking-widest uppercase text-[#1A1A1A]" style={{ letterSpacing: '0.18em' }}>
                 Женя Чирва
               </span>
-              <span
-                className="text-[0.6rem] tracking-[0.18em] uppercase font-medium"
-                style={{
-                  background: 'linear-gradient(45deg, #f09433, #dc2743)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
+              <span className="text-[0.6rem] tracking-[0.18em] uppercase font-medium text-[#737373]">
                 Content Creator
               </span>
             </div>
@@ -126,14 +117,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
               href={CREATOR_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full text-[#141312] hover:text-[#dc2743] transition-colors"
+              className="p-2 rounded-full text-[#141312] hover:text-black transition-colors"
             >
               <InstagramIcon className="w-5 h-5" />
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-full bg-[#F3EFEA] text-[#141312] hover:bg-[#EADCD0] transition-colors focus:outline-none"
+              className="p-2.5 rounded-full bg-[#1A1A1A] text-white hover:bg-[#333333] transition-colors focus:outline-none"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -154,12 +145,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#EBEBEB]">
           <div className="flex items-center gap-3">
-            {/* IG Story-ring monogram — matches desktop */}
-            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}>
+            {/* Story-ring monogram — matches desktop */}
+            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #000000, #3f3f46)' }}>
               <div style={{ background: '#fff', borderRadius: '50%', padding: '2px' }}>
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center"
-                  style={{ background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}
+                  className="w-8 h-8 rounded-full flex items-center justify-center bg-black"
                 >
                   <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.8rem', fontWeight: 700, color: '#fff', letterSpacing: '0.05em' }}>ЖЧ</span>
                 </div>
@@ -169,15 +159,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
               <span className="text-xs font-semibold tracking-widest uppercase text-[#1A1A1A]" style={{ letterSpacing: '0.18em' }}>
                 Женя Чирва
               </span>
-              <span
-                className="text-[0.6rem] tracking-[0.18em] uppercase font-medium"
-                style={{
-                  background: 'linear-gradient(45deg, #f09433, #dc2743)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
+              <span className="text-[0.6rem] tracking-[0.18em] uppercase font-medium text-[#737373]">
                 Content Creator
               </span>
             </div>
@@ -194,15 +176,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
 
         {/* Nav Links */}
         <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
-          <span
-            className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-4 block"
-            style={{
-              background: 'linear-gradient(45deg, #f09433, #dc2743)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#737373] mb-4 block">
             Навігація
           </span>
           <nav className="flex flex-col">
@@ -218,8 +192,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
                   {link.label}
                 </span>
                 <ArrowUpRight
-                  className="w-5 h-5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  style={{ color: '#dc2743' }}
+                  className="w-5 h-5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-black"
                 />
               </a>
             ))}

@@ -2,8 +2,6 @@ import { ArrowUp } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
 
-const igGradient = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
-
 export const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -15,12 +13,11 @@ export const Footer: React.FC = () => {
           {/* Brand */}
           <div className="md:col-span-5 space-y-5">
             <div className="flex items-center gap-3">
-              {/* IG Story ring monogram */}
-              <div style={{ padding: '2px', borderRadius: '50%', background: igGradient, display: 'inline-block' }}>
+              {/* Monogram */}
+              <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #3f3f46 0%, #000000 100%)', display: 'inline-block' }}>
                 <div style={{ background: '#0A0A0A', borderRadius: '50%', padding: '2px' }}>
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center"
-                    style={{ background: igGradient }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center bg-black"
                   >
                     <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.9rem', fontWeight: 600, color: '#fff', letterSpacing: '0.06em' }}>
                       ЖЧ
@@ -32,12 +29,7 @@ export const Footer: React.FC = () => {
                 <span className="text-sm font-semibold tracking-widest uppercase text-white">
                   Женя Чирва
                 </span>
-                <span className="text-[0.6rem] tracking-[0.2em] uppercase font-medium" style={{
-                  background: igGradient,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}>
+                <span className="text-[0.6rem] tracking-[0.2em] uppercase font-medium text-white/60">
                   Content Creator
                 </span>
               </div>
@@ -87,10 +79,8 @@ export const Footer: React.FC = () => {
               href={CREATOR_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-white/10 hover:border-transparent transition-all group"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-[#18181B] transition-all group"
               style={{ background: 'rgba(255,255,255,0.04)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = igGradient; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.04)'; }}
             >
               <InstagramIcon className="w-5 h-5 text-white" />
               <div>

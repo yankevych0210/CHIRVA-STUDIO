@@ -8,8 +8,6 @@ interface PortfolioProps {
   onInquire: () => void;
 }
 
-const igGradient = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
-
 export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'reels' | 'ugc' | 'photo' | 'lifestyle'>('all');
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
@@ -36,15 +34,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
             <span className="badge-editorial">ПОРТФОЛІО • ГАЛЕРЕЯ</span>
             <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
               Мої роботи, які <br />
-              <span
-                className="italic font-normal"
-                style={{
-                  background: igGradient,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
+              <span className="italic font-normal text-black">
                 говорять самі за себе
               </span>
             </h2>
@@ -54,7 +44,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
           </p>
         </div>
 
-        {/* Filter tabs — Instagram story-like pills */}
+        {/* Filter tabs — Minimalist pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
           {filterTabs.map((tab) => (
             <button
@@ -63,7 +53,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
               className="px-5 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap cursor-pointer border"
               style={
                 activeTab === tab.id
-                  ? { background: igGradient, color: '#fff', border: 'none', boxShadow: '0 4px 16px rgba(220,39,67,0.3)' }
+                  ? { background: '#000000', color: '#ffffff', border: 'none', boxShadow: '0 4px 14px rgba(0,0,0,0.2)' }
                   : { background: '#fff', color: '#737373', borderColor: '#EBEBEB' }
               }
             >
@@ -95,7 +85,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
                   style={{ background: 'rgba(0,0,0,0.35)' }}
                 >
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-xl">
-                    <ArrowUpRight className="w-5 h-5 text-[#dc2743]" />
+                    <ArrowUpRight className="w-5 h-5 text-black" />
                   </div>
                 </div>
 
@@ -111,7 +101,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
                 {item.metrics && (
                   <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-full backdrop-blur-sm text-white text-[11px] font-semibold flex items-center gap-1.5"
                     style={{ background: 'rgba(0,0,0,0.6)' }}>
-                    <Eye className="w-3 h-3" style={{ color: '#f09433' }} />
+                    <Eye className="w-3 h-3 text-white" />
                     <span>{item.metrics}</span>
                   </div>
                 )}
@@ -120,20 +110,12 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
               {/* Card footer */}
               <div className="p-5 flex flex-col gap-1.5">
                 <div className="flex items-center justify-between">
-                  <span
-                    className="text-[11px] font-semibold uppercase tracking-wider"
-                    style={{
-                      background: igGradient,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  >
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A]">
                     {item.categoryLabel}
                   </span>
                   {item.brand && <span className="text-[11px] text-[#ABABAB] font-medium">{item.brand}</span>}
                 </div>
-                <h3 className="font-semibold text-[#1A1A1A] text-sm group-hover:text-[#dc2743] transition-colors">
+                <h3 className="font-semibold text-[#1A1A1A] text-sm group-hover:text-black transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-xs text-[#737373] line-clamp-2 leading-relaxed">{item.description}</p>

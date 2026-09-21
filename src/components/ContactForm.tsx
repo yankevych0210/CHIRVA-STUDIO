@@ -57,8 +57,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
           {/* Main Container */}
           <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-14 border border-[#1C1A17]/8 shadow-2xl space-y-10 relative overflow-hidden">
             
-            {/* Ambient IG Glow */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#f09433]/15 via-[#dc2743]/15 to-[#bc1888]/15 rounded-full blur-3xl pointer-events-none" />
+            {/* Ambient Dark Glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-black/10 via-black/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
             {/* Emotional Header */}
             <div className="text-center space-y-3 max-w-xl mx-auto">
@@ -67,15 +67,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1C1A17]">
                 Створимо щось <br />
-                <span
-                  className="italic font-normal"
-                  style={{
-                    background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
+                <span className="italic font-normal text-black">
                   красиве разом?
                 </span>
               </h2>
@@ -90,9 +82,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                 href={CREATOR_INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pill hover:border-[#dc2743]/40"
+                className="btn-pill hover:border-black"
               >
-                <InstagramIcon className="w-4 h-4 text-[#dc2743]" />
+                <InstagramIcon className="w-4 h-4 text-black" />
                 <span>Instagram @{CREATOR_INFO.instagramHandle}</span>
               </a>
 
@@ -110,8 +102,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
             {/* Form / Success view */}
             {isSubmitted ? (
               <div className="text-center py-10 space-y-6 animate-fade-in">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
-                  <CheckCircle2 className="w-8 h-8" />
+                <div className="w-16 h-16 rounded-full bg-neutral-100 text-black mx-auto flex items-center justify-center border border-neutral-200">
+                  <CheckCircle2 className="w-8 h-8 text-black" />
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-serif text-3xl text-[#1C1A17]">Дякую, {name}!</h3>
@@ -143,7 +135,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                       placeholder="напр. Олена / Maison Brand"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-[#dc2743] focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-black focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
                     />
                   </div>
 
@@ -158,7 +150,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                       placeholder="@username або +380..."
                       value={handle}
                       onChange={(e) => setHandle(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-[#dc2743] focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-black focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
                     />
                   </div>
 
@@ -179,7 +171,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                           onClick={() => toggleService(srv)}
                           className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                             isSelected
-                              ? 'bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-md'
+                              ? 'bg-black text-white shadow-md'
                               : 'bg-[#F3EFEA] text-[#6E6962] hover:bg-[#EADCD0] hover:text-[#1C1A17]'
                           }`}
                         >
@@ -200,7 +192,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                     placeholder="Розкажіть про продукт, референси або терміни..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-[#dc2743] focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFEA]/60 border border-[#1C1A17]/10 focus:border-black focus:bg-white focus:outline-none text-sm transition-all text-[#1C1A17]"
                   />
                 </div>
 

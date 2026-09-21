@@ -10,11 +10,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
   return (
     <section id="hero" className="relative pt-20 pb-12 md:pt-28 md:pb-16 bg-white overflow-hidden">
 
-      {/* Subtle background gradient blobs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.07] rounded-full blur-3xl pointer-events-none"
-        style={{ background: 'linear-gradient(45deg, #f09433, #dc2743, #bc1888)' }} />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-[0.05] rounded-full blur-3xl pointer-events-none"
-        style={{ background: 'linear-gradient(45deg, #bc1888, #dc2743)' }} />
+      {/* Subtle background ambient glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] opacity-40 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.05) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-30 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%)' }} />
 
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -24,8 +24,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
 
             {/* Location badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAFAFA] border border-[#EBEBEB] text-xs font-semibold text-[#737373]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <MapPin className="w-3.5 h-3.5" style={{ color: '#dc2743' }} />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <MapPin className="w-3.5 h-3.5 text-black" />
               <span>{CREATOR_INFO.location}</span>
             </div>
 
@@ -36,15 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
               </p>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
                 Візуальна естетика,{' '}
-                <span
-                  className="italic font-normal"
-                  style={{
-                    background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
+                <span className="italic font-normal text-black">
                   яка закохує
                 </span>{' '}
                 <br />в бренд та будує довіру
@@ -82,15 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
             <div className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-6">
               {CREATOR_INFO.heroBadges.map((badge, idx) => (
                 <div key={idx} className="space-y-1">
-                  <div
-                    className="font-serif text-2xl sm:text-3xl font-normal"
-                    style={{
-                      background: 'linear-gradient(45deg, #f09433, #dc2743)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  >
+                  <div className="font-serif text-2xl sm:text-3xl font-semibold text-black">
                     {badge.value}
                   </div>
                   <div className="text-[11px] text-[#737373] font-semibold uppercase tracking-wider leading-tight">
@@ -122,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                 {/* IG-style like & save buttons */}
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4">
                   <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform">
-                    <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
+                    <Heart className="w-5 h-5 text-[#1A1A1A] fill-[#1A1A1A]" />
                   </div>
                   <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform">
                     <Bookmark className="w-5 h-5 text-[#1A1A1A]" />
@@ -163,7 +147,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
 
               {/* Floating badge — Reels */}
               <div className="absolute -top-3 -left-3 px-4 py-2 rounded-full bg-white border border-[#EBEBEB] shadow-lg flex items-center gap-2 text-xs font-semibold text-[#1A1A1A]">
-                <Play className="w-3 h-3 fill-[#dc2743] text-[#dc2743]" />
+                <Play className="w-3 h-3 fill-black text-black" />
                 Reels & UGC
               </div>
             </div>

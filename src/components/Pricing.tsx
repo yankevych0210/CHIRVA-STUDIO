@@ -6,8 +6,6 @@ interface PricingProps {
   onSelectPlan: () => void;
 }
 
-const igGradient = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
-
 export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan }) => {
   return (
     <section id="pricing" className="py-14 md:py-20 bg-white relative">
@@ -18,15 +16,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
           <span className="badge-editorial">ПРАЙС & ІНВЕСТИЦІЯ</span>
           <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
             Прозора вартість <br />
-            <span
-              className="italic font-normal"
-              style={{
-                background: igGradient,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+            <span className="italic font-normal text-black">
               під ваші задачі
             </span>
           </h2>
@@ -42,10 +32,10 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
               key={plan.id}
               className={`relative border transition-all duration-300 flex flex-col justify-between ${
                 plan.isPopular
-                  ? 'text-white shadow-2xl pt-10 pb-8 px-8 rounded-[28px]'
-                  : 'p-8 rounded-[28px] bg-white border-[#EBEBEB] hover:shadow-xl hover:border-transparent'
+                  ? 'text-white shadow-2xl pt-10 pb-8 px-8 rounded-[28px] border-neutral-800'
+                  : 'p-8 rounded-[28px] bg-white border-[#EBEBEB] hover:shadow-xl hover:border-black/30'
               }`}
-              style={plan.isPopular ? { background: igGradient } : {}}
+              style={plan.isPopular ? { background: 'linear-gradient(135deg, #18181B 0%, #000000 100%)' } : {}}
             >
               {/* Popular badge */}
               {plan.badge && (
@@ -55,7 +45,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
                     boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
                   }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-[#dc2743]" />
+                  <Sparkles className="w-3.5 h-3.5 text-black" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A]">
                     {plan.badge}
                   </span>
@@ -89,9 +79,8 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
                     <li key={idx} className="flex items-start gap-3 text-sm">
                       <div
                         className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          plan.isPopular ? 'bg-white/25' : ''
+                          plan.isPopular ? 'bg-white/20 text-white' : 'bg-black text-white'
                         }`}
-                        style={!plan.isPopular ? { background: igGradient } : {}}
                       >
                         <Check className="w-3 h-3 text-white" />
                       </div>
@@ -111,11 +100,11 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
                   rel="noopener noreferrer"
                   className={`w-full py-3.5 px-6 text-sm font-semibold rounded-full flex items-center justify-center gap-2 cursor-pointer transition-all ${
                     plan.isPopular
-                      ? 'bg-white text-[#1A1A1A] hover:opacity-90 shadow-lg'
+                      ? 'bg-white text-black hover:bg-neutral-100 shadow-lg'
                       : 'btn-ig'
                   }`}
                 >
-                  <InstagramIcon className="w-4 h-4" style={plan.isPopular ? { color: '#dc2743' } : {}} />
+                  <InstagramIcon className={`w-4 h-4 ${plan.isPopular ? 'text-black' : ''}`} />
                   <span>Запитати прайс у Direct</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
@@ -126,8 +115,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
 
         {/* Note */}
         <div className="mt-10 p-5 rounded-2xl bg-[#FAFAFA] border border-[#EBEBEB] max-w-2xl mx-auto flex items-center gap-4 text-xs text-[#737373]">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
-            style={{ background: igGradient }}>
+          <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shrink-0">
             <InstagramIcon className="w-4 h-4 text-white" />
           </div>
           <p>
