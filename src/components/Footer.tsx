@@ -1,6 +1,7 @@
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, MapPin } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -12,35 +13,15 @@ export const Footer: React.FC = () => {
 
           {/* Brand */}
           <div className="md:col-span-5 space-y-5">
-            <div className="flex items-center gap-3">
-              {/* Monogram */}
-              <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #3f3f46 0%, #000000 100%)', display: 'inline-block' }}>
-                <div style={{ background: '#0A0A0A', borderRadius: '50%', padding: '2px' }}>
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center bg-black"
-                  >
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.9rem', fontWeight: 600, color: '#fff', letterSpacing: '0.06em' }}>
-                      ЖЧ
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold tracking-widest uppercase text-white">
-                  Женя Чирва
-                </span>
-                <span className="text-[0.6rem] tracking-[0.2em] uppercase font-medium text-white/60">
-                  Content Creator
-                </span>
-              </div>
-            </div>
+            <BrandLogo isDarkBackground={true} />
 
             <p className="text-sm text-white/50 max-w-xs leading-relaxed">
               Контент-мейкерка & візуальна стратегиня. Естетичний фото та відеоконтент для брендів, що формує емоційний зв'язок з аудиторією.
             </p>
 
-            <div className="text-xs text-white/35 font-medium uppercase tracking-wider">
-              📍 Кременчук, Україна · Global Remote
+            <div className="text-xs text-white/40 font-medium uppercase tracking-wider flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-white/60 shrink-0" />
+              <span>Кременчук, Україна · Global Remote</span>
             </div>
           </div>
 

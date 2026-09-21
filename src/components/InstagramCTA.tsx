@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Zap } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
 import { ScrollReveal } from './ScrollReveal';
@@ -65,7 +65,10 @@ export const InstagramCTA: React.FC = () => {
               <span>·</span>
               <span>Kremenchuk, Ukraine</span>
               <span>·</span>
-              <span>Fast Reply in Direct ⚡</span>
+              <span className="inline-flex items-center gap-1">
+                <span>Fast Reply in Direct</span>
+                <Zap className="w-3.5 h-3.5 text-white/80" />
+              </span>
             </div>
 
           </div>

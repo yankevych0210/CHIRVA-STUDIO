@@ -235,7 +235,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/hero.png',
     likes: '1,420',
     comments: '84',
-    caption: 'Естетика в кожній деталі. Створюємо візуал, який говорить сам за себе ✨ #chirvacm #contentcreator',
+    caption: 'Естетика в кожній деталі. Створюємо візуал, який говорить сам за себе. #chirvacm #contentcreator',
     type: 'photo',
     url: 'https://www.instagram.com/chirva.cm/'
   },
@@ -244,7 +244,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/fashion.png',
     likes: '2,890',
     comments: '132',
-    caption: 'Morning walk in Paris style ☕️ Як правильно знімати fashion reels для брендів одягу',
+    caption: 'Morning walk in Paris style. Як правильно знімати fashion reels для брендів одягу.',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
@@ -262,7 +262,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/lifestyle.png',
     likes: '3,110',
     comments: '148',
-    caption: 'Matcha & Kinfolk mood. Естетичні деталі для щоденного натхнення ✨',
+    caption: 'Matcha & Kinfolk mood. Естетичні деталі для щоденного натхнення.',
     type: 'photo',
     url: 'https://www.instagram.com/chirva.cm/'
   },
@@ -271,7 +271,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/ugc.png',
     likes: '4,200',
     comments: '210',
-    caption: 'Чому UGC контент продає в 3 рази ефективніше за звичайні макети? Розбір кейсу 📈',
+    caption: 'Чому UGC контент продає в 3 рази ефективніше за звичайні макети? Розбір кейсу.',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
@@ -280,7 +280,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/about.png',
     likes: '2,340',
     comments: '98',
-    caption: 'Behind the scenes: день з життя контент-мейкерки. Студія, концепт і світло ✨',
+    caption: 'Behind the scenes: день з життя контент-мейкерки. Студія, концепт і світло.',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   }

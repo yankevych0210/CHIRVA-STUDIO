@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Clock } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
+import { BrandLogo } from './BrandLogo';
 
 interface HeaderProps {
   onOpenContact: () => void;
@@ -58,29 +59,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, 'hero')}
-            className="group flex items-center gap-3 text-decoration-none"
+            className="group flex items-center text-decoration-none"
           >
-            {/* Story-ring Monogram */}
-            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #000000, #3f3f46)' }} className="group-hover:scale-105 transition-transform duration-300">
-              <div style={{ background: '#fff', borderRadius: '50%', padding: '2px' }}>
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center bg-black"
-                >
-                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.85rem', fontWeight: 700, color: '#fff', letterSpacing: '0.05em', userSelect: 'none' }}>
-                    ЖЧ
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* Name */}
-            <div className="flex flex-col leading-tight">
-              <span className="text-xs font-semibold tracking-widest uppercase text-[#1A1A1A]" style={{ letterSpacing: '0.18em' }}>
-                Женя Чирва
-              </span>
-              <span className="text-[0.6rem] tracking-[0.18em] uppercase font-medium text-[#737373]">
-                Content Creator
-              </span>
-            </div>
+            <BrandLogo />
           </a>
 
           {/* Desktop Nav Links */}
@@ -144,26 +125,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#EBEBEB]">
-          <div className="flex items-center gap-3">
-            {/* Story-ring monogram — matches desktop */}
-            <div style={{ padding: '2px', borderRadius: '50%', background: 'linear-gradient(135deg, #000000, #3f3f46)' }}>
-              <div style={{ background: '#fff', borderRadius: '50%', padding: '2px' }}>
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center bg-black"
-                >
-                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.8rem', fontWeight: 700, color: '#fff', letterSpacing: '0.05em' }}>ЖЧ</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-xs font-semibold tracking-widest uppercase text-[#1A1A1A]" style={{ letterSpacing: '0.18em' }}>
-                Женя Чирва
-              </span>
-              <span className="text-[0.6rem] tracking-[0.18em] uppercase font-medium text-[#737373]">
-                Content Creator
-              </span>
-            </div>
-          </div>
+          <a
+            href="#hero"
+            onClick={(e) => handleNavClick(e, 'hero')}
+            className="text-decoration-none"
+          >
+            <BrandLogo />
+          </a>
 
           <button
             onClick={() => setMobileMenuOpen(false)}
@@ -212,8 +180,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenContact: _onOpenContact })
             <span>Написати в Instagram Direct</span>
             <ArrowUpRight className="w-4 h-4" />
           </a>
-          <p className="text-center text-[10px] text-[#ABABAB] mt-3 tracking-wider uppercase">
-            Відповідь протягом кількох годин ⚡
+          <p className="text-center text-[10px] text-[#737373] mt-3 tracking-wider uppercase flex items-center justify-center gap-1.5 font-medium">
+            <Clock className="w-3 h-3 text-black" />
+            <span>Відповідь протягом кількох годин</span>
           </p>
         </div>
       </div>

@@ -24,6 +24,13 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const node = ref.current;
     if (!node) return;
 
+    // Check if element is already in viewport on mount
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -33,7 +40,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
       },
       {
         threshold,
-        rootMargin: '0px 0px -40px 0px',
+        rootMargin: '0px 0px -20px 0px',
       }
     );
 

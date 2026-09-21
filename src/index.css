@@ -35,6 +35,7 @@
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
   --font-mono:  'DM Mono', ui-monospace, monospace;
+  --font-script: 'Alex Brush', cursive, sans-serif;
 
   /* Radius */
   --r-sm:   12px;

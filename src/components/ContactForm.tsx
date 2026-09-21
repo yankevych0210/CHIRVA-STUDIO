@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Send, CheckCircle2, Send as TelegramIcon } from 'lucide-react';
+import { Send, CheckCircle2, Send as TelegramIcon, Check } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { CREATOR_INFO } from '../data/portfolioData';
 
@@ -169,13 +169,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
                           key={srv}
                           type="button"
                           onClick={() => toggleService(srv)}
-                          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                             isSelected
                               ? 'bg-black text-white shadow-md'
-                              : 'bg-[#F3EFEA] text-[#6E6962] hover:bg-[#EADCD0] hover:text-[#1C1A17]'
+                              : 'bg-[#F5F5F5] text-[#737373] hover:bg-neutral-200 hover:text-black'
                           }`}
                         >
-                          {srv} {isSelected && '✓'}
+                          <span>{srv}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
                         </button>
                       );
                     })}
