@@ -148,7 +148,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                             <span>chirva.cm</span>
                             <span className="w-1.5 h-1.5 rounded-full bg-black" />
                           </div>
-                          <div className="text-xs text-[#737373]">Кременчук · Content Creator</div>
+                          <div className="text-xs text-[#737373]">Content Creator & Visual Strategist</div>
                         </div>
                         <a
                           href={CREATOR_INFO.instagramUrl}

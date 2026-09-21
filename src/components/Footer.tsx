@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
 
             <div className="text-xs text-white/40 font-medium uppercase tracking-wider flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-white/60 shrink-0" />
-              <span>Кременчук, Україна · Global Remote</span>
+              <span>Global Remote</span>
             </div>
           </div>
 

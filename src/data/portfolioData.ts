@@ -3,7 +3,7 @@ import type { PortfolioItem, ServiceItem, PricingPlan, CooperationStep, Instagra
 export const CREATOR_INFO = {
   name: 'Женя Чирва',
   role: 'Content Creator & Visual Strategist',
-  location: 'Кременчук, Україна • Global Remote',
+  location: 'Global Remote',
   instagramHandle: 'chirva.cm',
   instagramUrl: 'https://www.instagram.com/chirva.cm/',
   telegramUrl: 'https://t.me/chirva_cm',
