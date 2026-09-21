@@ -51,13 +51,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
             </ScrollReveal>
 
             {/* CTAs */}
-            <ScrollReveal animation="fade-up" delay={350}>
+            <ScrollReveal animation="fade-up" delay={350} className="w-full sm:w-auto">
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <a
                   href={CREATOR_INFO.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-ig py-3.5 px-7"
+                  className="btn-ig w-full sm:w-auto justify-center py-3.5 px-7"
                 >
                   <InstagramIcon className="w-4 h-4" />
                   <span>Написати в Direct</span>
@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                   href={CREATOR_INFO.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary py-3.5 px-7"
+                  className="btn-secondary w-full sm:w-auto justify-center py-3.5 px-7"
                 >
                   <span>@{CREATOR_INFO.instagramHandle}</span>
                 </a>
