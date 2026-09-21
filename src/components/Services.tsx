@@ -124,17 +124,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                 </div>
 
                 {/* Footer */}
-                <div className={`pt-4 mt-5 border-t space-y-3 ${
+                <div className={`pt-4 mt-5 border-t ${
                   service.isHighlighted ? 'border-white/15' : 'border-[#EBEBEB]'
                 }`}>
-                  <div className={`inline-flex items-start sm:items-center gap-2 px-3.5 py-2 rounded-xl text-xs leading-normal w-full ${
-                    service.isHighlighted ? 'bg-white/10 text-white/90 border border-white/10' : 'bg-[#F3EFEA]/80 border border-[#1C1A17]/5 text-[#6E6962]'
-                  }`}>
-                    <span className={`font-semibold shrink-0 ${service.isHighlighted ? 'text-white' : 'text-[#1C1A17]'}`}>Для кого:</span>
-                    <span>{service.recommendedFor}</span>
-                  </div>
-
-                  <div className="pt-1">
+                  <div>
                     <a
                       href={CREATOR_INFO.instagramUrl}
                       target="_blank"

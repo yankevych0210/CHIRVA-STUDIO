@@ -119,12 +119,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                   {/* Dark gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-                  {/* Status Tag Overlay */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-mono tracking-widest text-white uppercase flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
-                    <span>REC 4K 60FPS</span>
-                  </div>
-
                   {/* IG-style interactive action buttons */}
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3.5">
                     <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
