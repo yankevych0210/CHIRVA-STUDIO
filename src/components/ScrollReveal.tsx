@@ -66,15 +66,16 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     // Only reveal elements that are truly visible in the viewport on initial page load
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 40 && rect.bottom >= 0) {
+    if (rect.top < window.innerHeight - 80 && rect.bottom >= 0) {
       setIsVisible(true);
       return;
     }
 
-    // Trigger right when element enters the bottom of the viewport
-    // (-10px mobile, -25px desktop) so the user clearly sees the graceful reveal animation!
+    // Golden balance trigger point:
+    // When element is ~50px (mobile) or ~80px (desktop) inside the screen,
+    // it triggers right in the user's field of view so the animation is clearly, beautifully visible!
     const isMobileView = window.innerWidth < 768;
-    const rootMargin = isMobileView ? '0px 0px -10px 0px' : '0px 0px -25px 0px';
+    const rootMargin = isMobileView ? '0px 0px -50px 0px' : '0px 0px -80px 0px';
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -87,7 +88,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         }
       },
       {
-        threshold: 0.04,
+        threshold: 0.08,
         rootMargin,
       }
     );
@@ -104,27 +105,27 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const isFast = enteredAlreadyInView || isFastScrolling;
 
     // Fast scroll: zero delay so content never lags.
-    // Slow / normal scroll: subtle elegant stagger (max 60ms on mobile, 120ms on desktop)
+    // Slow / normal scroll: subtle elegant stagger (max 80ms on mobile, 140ms on desktop)
     const effectiveDelay = isFast
       ? 0
-      : (isMobile ? Math.min(delay * 0.4, 60) : Math.min(delay, 120));
+      : (isMobile ? Math.min(delay * 0.5, 80) : Math.min(delay, 140));
 
-    // Fast scroll: snappy 180ms.
-    // Slow / normal scroll: luxurious 440ms (mobile) to 520ms (desktop) for visible, silky motion
+    // Fast scroll: snappy 200ms.
+    // Slow / normal scroll: rich 580ms (mobile) to 660ms (desktop) for clearly visible, silky motion
     const effectiveDuration = isFast
-      ? 180
-      : (isMobile ? Math.min(duration, 440) : Math.min(duration, 520));
+      ? 200
+      : (isMobile ? Math.max(duration, 580) : Math.max(duration, 660));
 
-    // Fast scroll: minimal 6px to avoid jitter.
-    // Slow / normal scroll: distinct, elegant lift (18px mobile, 26px desktop)
+    // Fast scroll: subtle 8px to prevent jitter.
+    // Slow / normal scroll: clearly noticeable, graceful lift (32px mobile, 44px desktop)
     const translateYDistance = isFast
-      ? '6px'
-      : (isMobile ? '18px' : '26px');
+      ? '8px'
+      : (isMobile ? '32px' : '44px');
 
     const baseStyle: React.CSSProperties = {
       transitionProperty: 'transform, opacity',
       transitionDuration: `${effectiveDuration}ms`,
-      transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      transitionTimingFunction: 'cubic-bezier(0.19, 1, 0.22, 1)',
       transitionDelay: `${effectiveDelay}ms`,
       willChange: isVisible ? 'auto' : 'transform, opacity',
     };
@@ -141,19 +142,21 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
           return {
             ...baseStyle,
             opacity: 0,
-            transform: `scale(0.98) translateY(${translateYDistance})`,
+            transform: isFast
+              ? 'scale(0.98) translateY(8px)'
+              : (isMobile ? 'scale(0.94) translateY(28px)' : 'scale(0.92) translateY(36px)'),
           };
         case 'slide-right':
           return {
             ...baseStyle,
             opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(-16px)',
+            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(-28px)',
           };
         case 'slide-left':
           return {
             ...baseStyle,
             opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(16px)',
+            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(28px)',
           };
         case 'fade-in':
         default:
