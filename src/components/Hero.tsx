@@ -155,10 +155,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                   </div>
                 </div>
 
-                {/* Floating badge — Reels */}
-                <div className="absolute -top-2 left-0 sm:-top-3 sm:-left-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white border border-black/10 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold z-10 text-[#1A1A1A]">
-                  <Play className="w-3.5 h-3.5 fill-black text-black" />
-                  <span>Reels & UGC Production</span>
+                {/* Floating badge — Reels REC Viewfinder */}
+                <div className="absolute -top-2.5 left-2 sm:-top-3 sm:-left-3 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#18181B]/90 backdrop-blur-md border border-white/15 text-white shadow-xl flex items-center gap-2 text-[11px] font-mono tracking-wider z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                  <span className="font-semibold text-white/95">REC</span>
+                  <span className="text-white/20 font-light">|</span>
+                  <span className="text-[10.5px] uppercase tracking-widest text-neutral-300">Reels & UGC</span>
                 </div>
               </div>
             </ScrollReveal>

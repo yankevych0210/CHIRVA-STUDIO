@@ -26,7 +26,12 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="space-y-3 max-w-2xl">
-              <span className="badge-editorial">ПОСЛУГИ ТА НАПРЯМКИ</span>
+              <div className="section-eyebrow">
+                <span className="section-eyebrow-line" />
+                <span className="section-eyebrow-num">03</span>
+                <span className="section-eyebrow-sep">/</span>
+                <span className="section-eyebrow-text">Послуги</span>
+              </div>
               <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
                 Що я створюю для <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">

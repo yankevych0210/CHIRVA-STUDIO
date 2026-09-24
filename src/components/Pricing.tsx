@@ -1,4 +1,4 @@
-import { Check, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Check, ArrowUpRight } from 'lucide-react';
 import { PRICING_PLANS, CREATOR_INFO } from '../data/portfolioData';
 import { InstagramIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
@@ -15,7 +15,13 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
         {/* Header */}
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <span className="badge-editorial">ПРАЙС & ІНВЕСТИЦІЯ</span>
+            <div className="section-eyebrow justify-center">
+              <span className="section-eyebrow-line" />
+              <span className="section-eyebrow-num">05</span>
+              <span className="section-eyebrow-sep">/</span>
+              <span className="section-eyebrow-text">Вартість</span>
+              <span className="section-eyebrow-line" />
+            </div>
             <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
               Прозора вартість <span className="hidden sm:inline"><br /></span>
               <span className="italic font-normal text-black relative inline-block">
@@ -44,15 +50,10 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
                 {/* Popular badge */}
                 {plan.badge && (
                   <div
-                    className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full whitespace-nowrap z-10 flex items-center gap-1.5 shadow-lg bg-white text-[#1A1A1A] border border-white/80"
-                    style={{
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
-                    }}
+                    className="absolute -top-3 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full whitespace-nowrap z-10 bg-white text-[#18181B] text-[10px] font-mono font-semibold uppercase tracking-[0.2em] shadow-md border border-black/10 flex items-center gap-1.5"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-black" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A]">
-                      {plan.badge}
-                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                    <span>{plan.badge}</span>
                   </div>
                 )}
 

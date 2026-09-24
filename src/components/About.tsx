@@ -78,7 +78,12 @@ export const About: React.FC = () => {
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-8">
             <ScrollReveal animation="fade-up" delay={150}>
               <div className="space-y-3">
-                <span className="badge-editorial">ПРО МЕНЕ • ФІЛОСОФІЯ</span>
+                <div className="section-eyebrow">
+                  <span className="section-eyebrow-line" />
+                  <span className="section-eyebrow-num">01</span>
+                  <span className="section-eyebrow-sep">/</span>
+                  <span className="section-eyebrow-text">Про мене</span>
+                </div>
                 <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
                   Привіт, я Женя. <br />
                   <span className="italic font-normal text-black relative inline-block">

@@ -62,9 +62,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ preselectedTopic }) =>
 
             {/* Emotional Header */}
             <div className="text-center space-y-3 max-w-xl mx-auto">
-              <span className="badge-editorial">
-                Обговорити проєкт
-              </span>
+              <div className="section-eyebrow justify-center">
+                <span className="section-eyebrow-line" />
+                <span className="section-eyebrow-num">07</span>
+                <span className="section-eyebrow-sep">/</span>
+                <span className="section-eyebrow-text">Зв'язок</span>
+                <span className="section-eyebrow-line" />
+              </div>
               <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1C1A17]">
                 Створимо щось <br />
                 <span className="italic font-normal text-black">

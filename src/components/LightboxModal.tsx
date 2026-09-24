@@ -61,7 +61,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose, onI
             
             {/* Category & Brand Tag */}
             <div className="flex items-center gap-2">
-              <span className="badge-editorial text-[10px]">
+              <span className="text-[10px] font-mono font-medium uppercase tracking-[0.16em] text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded">
                 {item.categoryLabel}
               </span>
               {item.brand && (

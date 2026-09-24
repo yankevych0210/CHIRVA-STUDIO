@@ -39,7 +39,12 @@ export const Cases: React.FC<CasesProps> = ({ onOpenContact: _onOpenContact }) =
         {/* Header */}
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="space-y-3 max-w-2xl mb-14">
-            <span className="badge-editorial">ФОРМАТИ СПІВПРАЦІ</span>
+            <div className="section-eyebrow">
+              <span className="section-eyebrow-line" />
+              <span className="section-eyebrow-num">04</span>
+              <span className="section-eyebrow-sep">/</span>
+              <span className="section-eyebrow-text">Формати роботи</span>
+            </div>
             <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
               Як будується <span className="hidden sm:inline"><br /></span>
               <span className="italic font-normal text-black relative inline-block">

@@ -12,10 +12,12 @@ export const InstagramFeed: React.FC = () => {
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="space-y-3 max-w-xl">
-              <span className="badge-editorial">
-                <InstagramIcon className="w-3.5 h-3.5 text-black" />
-                <span>@{CREATOR_INFO.instagramHandle}</span>
-              </span>
+              <div className="section-eyebrow">
+                <span className="section-eyebrow-line" />
+                <span className="section-eyebrow-num">06</span>
+                <span className="section-eyebrow-sep">/</span>
+                <span className="section-eyebrow-text">Instagram</span>
+              </div>
               <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
                 Більше живого контенту — <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">
