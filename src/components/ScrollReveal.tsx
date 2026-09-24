@@ -64,20 +64,22 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const node = ref.current;
     if (!node) return;
 
-    // Generous advance detection: if element is within initial screen + 300px, reveal immediately
+    // Only reveal elements that are truly visible in the viewport on initial page load
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight + 300 && rect.bottom >= -150) {
+    if (rect.top < window.innerHeight - 40 && rect.bottom >= 0) {
       setIsVisible(true);
       return;
     }
 
-    // 400px advance margin so animations start well before element scrolls into view
+    // Trigger right when element enters the bottom of the viewport
+    // (-10px mobile, -25px desktop) so the user clearly sees the graceful reveal animation!
+    const isMobileView = window.innerWidth < 768;
+    const rootMargin = isMobileView ? '0px 0px -10px 0px' : '0px 0px -25px 0px';
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // If already inside the visible viewport (e.g. fast swipe landed directly on it)
-          // or user is scrolling fast, drop delay to 0 for instant reveal
-          if (entry.boundingClientRect.top < window.innerHeight || isFastScrolling) {
+          if (isFastScrolling) {
             setEnteredAlreadyInView(true);
           }
           setIsVisible(true);
@@ -85,8 +87,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         }
       },
       {
-        threshold: 0,
-        rootMargin: '200px 0px 400px 0px',
+        threshold: 0.04,
+        rootMargin,
       }
     );
 
@@ -99,21 +101,25 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
   const getAnimationStyles = (): React.CSSProperties => {
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+    const isFast = enteredAlreadyInView || isFastScrolling;
 
-    // Eliminate artificial delays on mobile or during fast scroll so blocks NEVER hang empty
-    const effectiveDelay = (isMobile || enteredAlreadyInView || isFastScrolling)
+    // Fast scroll: zero delay so content never lags.
+    // Slow / normal scroll: subtle elegant stagger (max 60ms on mobile, 120ms on desktop)
+    const effectiveDelay = isFast
       ? 0
-      : Math.min(delay, 80);
+      : (isMobile ? Math.min(delay * 0.4, 60) : Math.min(delay, 120));
 
-    // Faster, crisper duration when scrolling fast
-    const effectiveDuration = enteredAlreadyInView || isFastScrolling
-      ? 240
-      : (isMobile ? Math.min(duration, 300) : Math.min(duration, 380));
+    // Fast scroll: snappy 180ms.
+    // Slow / normal scroll: luxurious 440ms (mobile) to 520ms (desktop) for visible, silky motion
+    const effectiveDuration = isFast
+      ? 180
+      : (isMobile ? Math.min(duration, 440) : Math.min(duration, 520));
 
-    // Subtle distance (8px on mobile / fast scroll, 14px default) to prevent jarring pops
-    const translateYDistance = (isMobile || enteredAlreadyInView || isFastScrolling)
-      ? '8px'
-      : '14px';
+    // Fast scroll: minimal 6px to avoid jitter.
+    // Slow / normal scroll: distinct, elegant lift (18px mobile, 26px desktop)
+    const translateYDistance = isFast
+      ? '6px'
+      : (isMobile ? '18px' : '26px');
 
     const baseStyle: React.CSSProperties = {
       transitionProperty: 'transform, opacity',
