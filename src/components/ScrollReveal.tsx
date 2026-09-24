@@ -9,25 +9,52 @@ interface ScrollRevealProps {
   threshold?: number;
 }
 
+// Global scroll velocity tracker so all ScrollReveal instances know if user is scrolling fast
+let isFastScrolling = false;
+let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+let lastScrollTime = Date.now();
+
+if (typeof window !== 'undefined') {
+  window.addEventListener(
+    'scroll',
+    () => {
+      const now = Date.now();
+      const deltaY = Math.abs(window.scrollY - lastScrollY);
+      const deltaTime = Math.max(now - lastScrollTime, 1);
+      const speed = deltaY / deltaTime; // pixels per ms
+
+      // If scrolling faster than 0.7px/ms (~700px/s), treat as fast scroll
+      if (speed > 0.7) {
+        isFastScrolling = true;
+      }
+
+      lastScrollY = window.scrollY;
+      lastScrollTime = now;
+
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isFastScrolling = false;
+      }, 120);
+    },
+    { passive: true }
+  );
+}
+
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   animation = 'fade-up',
   delay = 0,
-  duration = 600,
+  duration = 420,
   className = '',
-  threshold = 0.08,
+  threshold = 0,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [enteredAlreadyInView, setEnteredAlreadyInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Detect mobile viewport and check reduced motion preference
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-
+    // Check reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) {
       setIsVisible(true);
@@ -37,28 +64,29 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const node = ref.current;
     if (!node) return;
 
-    // If element is already in the viewport on mount, reveal immediately
+    // Generous advance detection: if element is within initial screen + 300px, reveal immediately
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight + 50 && rect.bottom >= 0) {
+    if (rect.top < window.innerHeight + 300 && rect.bottom >= -150) {
       setIsVisible(true);
       return;
     }
 
-    // On mobile, trigger earlier (positive rootMargin) so content reveals smoothly
-    // before the user's scroll inertia hits empty space.
-    const mobileMargin = '0px 0px 80px 0px';
-    const desktopMargin = '0px 0px -30px 0px';
-
+    // 400px advance margin so animations start well before element scrolls into view
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // If already inside the visible viewport (e.g. fast swipe landed directly on it)
+          // or user is scrolling fast, drop delay to 0 for instant reveal
+          if (entry.boundingClientRect.top < window.innerHeight || isFastScrolling) {
+            setEnteredAlreadyInView(true);
+          }
           setIsVisible(true);
           observer.unobserve(node);
         }
       },
       {
-        threshold: window.innerWidth < 768 ? 0.02 : threshold,
-        rootMargin: window.innerWidth < 768 ? mobileMargin : desktopMargin,
+        threshold: 0,
+        rootMargin: '200px 0px 400px 0px',
       }
     );
 
@@ -70,12 +98,22 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   }, [threshold]);
 
   const getAnimationStyles = (): React.CSSProperties => {
-    // On mobile: clamp delays so vertically stacked items don't leave empty blank boxes
-    const effectiveDelay = isMobile ? Math.min(delay, 80) : delay;
-    // On mobile: faster, crisper duration (450ms max) for responsive touch feel
-    const effectiveDuration = isMobile ? Math.min(duration, 480) : duration;
-    // On mobile: softer transform distance to prevent judder
-    const translateYDistance = isMobile ? '16px' : '32px';
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+
+    // Eliminate artificial delays on mobile or during fast scroll so blocks NEVER hang empty
+    const effectiveDelay = (isMobile || enteredAlreadyInView || isFastScrolling)
+      ? 0
+      : Math.min(delay, 80);
+
+    // Faster, crisper duration when scrolling fast
+    const effectiveDuration = enteredAlreadyInView || isFastScrolling
+      ? 240
+      : (isMobile ? Math.min(duration, 300) : Math.min(duration, 380));
+
+    // Subtle distance (8px on mobile / fast scroll, 14px default) to prevent jarring pops
+    const translateYDistance = (isMobile || enteredAlreadyInView || isFastScrolling)
+      ? '8px'
+      : '14px';
 
     const baseStyle: React.CSSProperties = {
       transitionProperty: 'transform, opacity',
@@ -97,22 +135,19 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
           return {
             ...baseStyle,
             opacity: 0,
-            transform: isMobile
-              ? 'scale(0.98) translateY(12px)'
-              : 'scale(0.96) translateY(20px)',
+            transform: `scale(0.98) translateY(${translateYDistance})`,
           };
         case 'slide-right':
-          // On mobile, avoid horizontal offsets (prevents horizontal scroll jitter)
           return {
             ...baseStyle,
             opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(-32px)',
+            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(-16px)',
           };
         case 'slide-left':
           return {
             ...baseStyle,
             opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(32px)',
+            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(16px)',
           };
         case 'fade-in':
         default:
