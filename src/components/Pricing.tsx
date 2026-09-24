@@ -16,8 +16,8 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
             <span className="badge-editorial">ПРАЙС & ІНВЕСТИЦІЯ</span>
-            <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
-              Прозора вартість <br />
+            <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+              Прозора вартість <span className="hidden sm:inline"><br /></span>
               <span className="italic font-normal text-black relative inline-block">
                 під ваші задачі
                 <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
@@ -36,8 +36,8 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan: _onSelectPlan })
               <div
                 className={`relative border transition-all duration-300 flex flex-col justify-between h-full ${
                   plan.isPopular
-                    ? 'text-white shadow-2xl pt-10 pb-8 px-8 rounded-[28px] border-neutral-800'
-                    : 'p-8 rounded-[28px] bg-white border-[#EBEBEB] hover:shadow-xl hover:border-black/30'
+                    ? 'text-white shadow-2xl pt-10 pb-8 px-8 rounded-[20px] sm:rounded-[28px] border-neutral-800'
+                    : 'p-8 rounded-[20px] sm:rounded-[28px] bg-white border-[#EBEBEB] hover:shadow-xl hover:border-black/30'
                 }`}
                 style={plan.isPopular ? { background: 'linear-gradient(135deg, #18181B 0%, #000000 100%)' } : {}}
               >

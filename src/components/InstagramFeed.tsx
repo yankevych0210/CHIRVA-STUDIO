@@ -16,8 +16,8 @@ export const InstagramFeed: React.FC = () => {
                 <InstagramIcon className="w-3.5 h-3.5 text-black" />
                 <span>@{CREATOR_INFO.instagramHandle}</span>
               </span>
-              <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
-                Більше живого контенту — <br />
+              <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+                Більше живого контенту — <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">
                   в Instagram
                   <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />

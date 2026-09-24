@@ -34,8 +34,8 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="space-y-3 max-w-xl">
               <span className="badge-editorial">ПОРТФОЛІО • ГАЛЕРЕЯ</span>
-              <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
-                Мої роботи, які <br />
+              <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+                Мої роботи, які <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">
                   говорять самі за себе
                   <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
@@ -74,7 +74,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onInquire }) => {
             <ScrollReveal key={item.id} animation="fade-up" delay={100 + (idx % 3) * 100}>
               <div
                 onClick={() => setSelectedItem(item)}
-                className="group cursor-pointer rounded-[24px] overflow-hidden bg-white border border-[#EBEBEB] hover:shadow-2xl transition-all duration-400 flex flex-col h-full"
+                className="group cursor-pointer rounded-[16px] sm:rounded-[24px] overflow-hidden bg-white border border-[#EBEBEB] hover:shadow-2xl transition-all duration-400 flex flex-col h-full"
               >
                 {/* Square image */}
                 <div className="relative w-full aspect-square overflow-hidden bg-[#F5F5F5]">

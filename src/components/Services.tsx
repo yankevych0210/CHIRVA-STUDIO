@@ -27,8 +27,8 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="space-y-3 max-w-2xl">
               <span className="badge-editorial">ПОСЛУГИ ТА НАПРЯМКИ</span>
-              <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
-                Що я створюю для <br />
+              <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+                Що я створюю для <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">
                   вашого бренду
                   <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
@@ -46,7 +46,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
           {SERVICES.map((service, idx) => (
             <ScrollReveal key={service.id} animation="fade-up" delay={150 + idx * 100}>
               <div
-                className={`group p-7 sm:p-9 rounded-[28px] border transition-all duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
+                className={`group p-7 sm:p-9 rounded-[20px] sm:rounded-[28px] border transition-all duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
                   service.isHighlighted
                     ? 'bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-2xl'
                     : 'bg-[#FAFAFA] border-[#EBEBEB] text-[#1A1A1A] hover:shadow-xl hover:border-black/30'

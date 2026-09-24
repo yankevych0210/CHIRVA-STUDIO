@@ -46,7 +46,10 @@
 }
 
 /* ─── Base Reset ─────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
 html {
   scroll-behavior: smooth;
@@ -62,6 +65,16 @@ body {
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* Modern text wrap balancing across browsers */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 img, video {
@@ -142,7 +155,7 @@ img, video {
 }
 
 /* ═══════════════════════════════════════════════
-   BUTTONS
+   BUTTONS — Editorial & Tactile
 ═══════════════════════════════════════════════ */
 
 /* PRIMARY — Dark pill */
@@ -155,59 +168,74 @@ img, video {
   gap: 0.55rem;
   background: var(--bg-dark);
   color: #fff !important;
-  padding: 0.8rem 2rem;
+  min-height: 46px;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--r-full);
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
   text-decoration: none;
   border: 1px solid var(--bg-dark);
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-              box-shadow 0.3s ease,
-              background 0.3s ease;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease,
+              border-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  user-select: none;
 }
 
 .btn-primary:hover {
   background: #27272A;
   border-color: #27272A;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
 }
 
-.btn-primary:active { transform: translateY(0); }
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
-/* SECONDARY — White ghost */
+/* SECONDARY — Subtle border pill */
 .btn-secondary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
   background: transparent;
   color: var(--text-main) !important;
-  padding: 0.8rem 2rem;
+  min-height: 46px;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--r-full);
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
   text-decoration: none;
-  border: 1.5px solid var(--border-strong);
+  border: 1px solid rgba(0, 0, 0, 0.16);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+  user-select: none;
 }
 
 .btn-secondary:hover {
-  background: var(--bg-dark);
-  border-color: var(--bg-dark);
+  background: #000000;
+  border-color: #000000;
   color: #fff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.btn-secondary:active { transform: translateY(0); }
+.btn-secondary:active {
+  transform: scale(0.97);
+}
 
 /* BLACK CTA BUTTON */
 .btn-ig {
@@ -219,26 +247,28 @@ img, video {
   gap: 0.55rem;
   background: #000000;
   color: #fff !important;
-  padding: 0.8rem 2rem;
+  min-height: 46px;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--r-full);
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
   text-decoration: none;
   border: 1px solid #000000;
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-              box-shadow 0.3s ease,
-              background 0.3s ease;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  user-select: none;
 }
 
 .btn-ig::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.15) 50%, transparent 65%);
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%);
   transform: translateX(-150%) skewX(-15deg);
   pointer-events: none;
 }
@@ -248,11 +278,14 @@ img, video {
 .btn-ig:hover {
   background: #27272A;
   border-color: #27272A;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 
-.btn-ig:active { transform: translateY(0); }
+.btn-ig:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
 /* ACCENT BLACK CTA */
 .btn-gold {
@@ -366,3 +399,53 @@ img, video {
 /* ─── Scrollbars ─────────────────────────────── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══════════════════════════════════════════════
+   MOBILE-SPECIFIC OVERRIDES
+═══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* Disable hover-only effects on touch */
+  .card-ig:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Ensure buttons are comfortably tappable (44px min) */
+  .btn-primary,
+  .btn-secondary,
+  .btn-ig,
+  .btn-gold,
+  .btn-pill {
+    min-height: 44px;
+  }
+
+  /* Sections: slightly tighter vertical rhythm on small screens */
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Prevent any horizontal overflow from transforms */
+  section {
+    overflow-x: clip;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── iOS Safari safe-area insets ─────────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

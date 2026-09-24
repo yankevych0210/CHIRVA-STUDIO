@@ -9,7 +9,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => {
   return (
-    <section id="hero" className="relative pt-24 pb-14 md:pt-32 md:pb-20 bg-white overflow-hidden">
+    <section id="hero" className="relative pt-28 pb-14 md:pt-32 md:pb-20 bg-white overflow-hidden">
 
       {/* Subtle background ambient glows */}
       <div className="absolute top-0 right-0 w-[550px] h-[550px] opacity-40 rounded-full blur-3xl pointer-events-none"
@@ -32,13 +32,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                     Content Creator · Visual Strategist
                   </p>
                 </div>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
+                <h1 className="font-serif text-[2rem] sm:text-5xl lg:text-6xl font-normal leading-[1.12] sm:leading-[1.08] tracking-tight text-[#1A1A1A]">
                   Візуальна естетика,{' '}
                   <span className="italic font-normal text-black relative inline-block">
                     яка закохує
                     <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
                   </span>{' '}
-                  <br />в бренд та будує довіру
+                  <span className="hidden sm:inline"><br /></span>в бренд та будує довіру
                 </h1>
               </div>
             </ScrollReveal>
@@ -76,13 +76,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
 
             {/* Stats */}
             <ScrollReveal animation="fade-up" delay={450} className="w-full">
-              <div className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-6">
+              <div className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-3 sm:gap-6">
                 {CREATOR_INFO.heroBadges.map((badge, idx) => (
                   <div key={idx} className="space-y-1">
-                    <div className="font-serif text-2xl sm:text-3xl font-semibold text-black">
+                    <div className="font-serif text-xl sm:text-3xl font-semibold text-black">
                       {badge.value}
                     </div>
-                    <div className="text-[11px] text-[#737373] font-medium uppercase tracking-wider leading-tight">
+                    <div className="text-[10px] sm:text-[11px] text-[#737373] font-medium uppercase tracking-wider leading-tight">
                       {badge.label}
                     </div>
                   </div>
@@ -93,11 +93,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
 
           {/* Right: Instagram Profile Card */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <ScrollReveal animation="scale-up" delay={200} className="w-full max-w-[420px]">
+            <ScrollReveal animation="scale-up" delay={200} className="w-full max-w-[360px] sm:max-w-[420px]">
               <div className="relative w-full">
 
                 {/* Main photo card */}
-                <div className="relative rounded-[32px] overflow-hidden bg-[#FAFAFA] border border-black/10 shadow-2xl group"
+                <div className="relative rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#FAFAFA] border border-black/10 shadow-2xl group"
                   style={{ aspectRatio: '4/5' }}>
 
                   <img
@@ -111,7 +111,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                   {/* IG-style interactive action buttons */}
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3.5">
+                  <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2.5 sm:gap-3.5">
                     <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
                       <Heart className="w-5 h-5 text-[#1A1A1A] fill-[#1A1A1A]" />
                     </div>
@@ -124,8 +124,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                   </div>
 
                   {/* Bottom caption card */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl">
                       <div className="flex items-center gap-3">
                         {/* Story ring avatar */}
                         <div className="ig-story-ring w-10 h-10 shrink-0">
@@ -156,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact: _onOpenContact }) => 
                 </div>
 
                 {/* Floating badge — Reels */}
-                <div className="absolute -top-3 -left-3 px-4 py-2.5 rounded-full bg-white border border-black/10 shadow-xl flex items-center gap-2 text-xs font-semibold text-[#1A1A1A]">
+                <div className="absolute -top-2 left-0 sm:-top-3 sm:-left-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white border border-black/10 shadow-xl flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold z-10 text-[#1A1A1A]">
                   <Play className="w-3.5 h-3.5 fill-black text-black" />
                   <span>Reels & UGC Production</span>
                 </div>

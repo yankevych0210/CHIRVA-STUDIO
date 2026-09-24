@@ -38,7 +38,7 @@ export const About: React.FC = () => {
           <div className="lg:col-span-5 order-2 lg:order-1">
             <ScrollReveal animation="slide-right" delay={100}>
               <div className="relative max-w-[400px] mx-auto lg:max-w-none">
-                <div className="w-full aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl border border-black/10 bg-[#F5F5F5] group">
+                <div className="w-full aspect-[4/5] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-black/10 bg-[#F5F5F5] group">
                   <img
                     src="/images/about.png"
                     alt="Женя Чирва за роботою"
@@ -79,7 +79,7 @@ export const About: React.FC = () => {
             <ScrollReveal animation="fade-up" delay={150}>
               <div className="space-y-3">
                 <span className="badge-editorial">ПРО МЕНЕ • ФІЛОСОФІЯ</span>
-                <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
+                <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
                   Привіт, я Женя. <br />
                   <span className="italic font-normal text-black relative inline-block">
                     Створюю візуальні історії

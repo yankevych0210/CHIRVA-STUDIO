@@ -40,8 +40,8 @@ export const Cases: React.FC<CasesProps> = ({ onOpenContact: _onOpenContact }) =
         <ScrollReveal animation="fade-up" delay={50}>
           <div className="space-y-3 max-w-2xl mb-14">
             <span className="badge-editorial">ФОРМАТИ СПІВПРАЦІ</span>
-            <h2 className="font-serif text-3xl sm:text-5xl leading-tight text-[#1A1A1A]">
-              Як будується <br />
+            <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+              Як будується <span className="hidden sm:inline"><br /></span>
               <span className="italic font-normal text-black relative inline-block">
                 наша робота над проєктом
                 <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
@@ -55,7 +55,7 @@ export const Cases: React.FC<CasesProps> = ({ onOpenContact: _onOpenContact }) =
           {formats.map((fmt, idx) => (
             <ScrollReveal key={idx} animation="fade-up" delay={150 + idx * 100}>
               <div
-                className="group p-7 rounded-[24px] bg-white border border-[#EBEBEB] hover:shadow-xl hover:border-black/30 transition-all duration-300 flex flex-col justify-between space-y-5 relative overflow-hidden h-full"
+                className="group p-7 rounded-[20px] sm:rounded-[24px] bg-white border border-[#EBEBEB] hover:shadow-xl hover:border-black/30 transition-all duration-300 flex flex-col justify-between space-y-5 relative overflow-hidden h-full"
               >
                 {/* Black top line on hover */}
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
@@ -97,7 +97,7 @@ export const Cases: React.FC<CasesProps> = ({ onOpenContact: _onOpenContact }) =
         {/* 4-step workflow — Minimalist Black background banner */}
         <ScrollReveal animation="scale-up" delay={200}>
           <div
-            className="p-8 sm:p-12 rounded-[32px] text-white space-y-10 relative overflow-hidden shadow-2xl bg-[#0A0A0A] border border-neutral-800"
+            className="p-6 sm:p-12 rounded-[24px] sm:rounded-[32px] text-white space-y-10 relative overflow-hidden shadow-2xl bg-[#0A0A0A] border border-neutral-800"
             style={{ background: 'linear-gradient(135deg, #18181B 0%, #000000 100%)' }}
           >
             {/* Noise overlay */}

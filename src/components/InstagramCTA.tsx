@@ -24,7 +24,7 @@ export const InstagramCTA: React.FC = () => {
 
             {/* Instagram icon large */}
             <div className="flex justify-center">
-              <div className="w-20 h-20 rounded-[28px] bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-2xl">
+              <div className="w-20 h-20 rounded-[20px] sm:rounded-[28px] bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-2xl">
                 <InstagramIcon className="w-10 h-10 text-white" />
               </div>
             </div>
@@ -35,7 +35,7 @@ export const InstagramCTA: React.FC = () => {
                 Direct Collaboration
               </p>
               <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.05] tracking-tight text-white">
-                Готові створити <br />
+                Готові створити <span className="hidden sm:inline"><br /></span>
                 <span className="italic">щось виняткове?</span>
               </h2>
             </div>
