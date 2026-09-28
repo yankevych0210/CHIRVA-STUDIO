@@ -1,7 +1,15 @@
 import type { PortfolioItem, ServiceItem, PricingPlan, CooperationStep, InstagramPost } from '../types';
 
 export const CREATOR_INFO = {
+  /**
+   * Production domain without a trailing slash, e.g. 'https://chirva.studio'.
+   * Used for canonical URL, Open Graph, JSON-LD and sitemap.xml at build time.
+   * Leave empty until the domain is known — absolute-URL tags are then skipped.
+   */
+  siteUrl: 'https://chirva-studio.vercel.app',
   name: 'Женя Чирва',
+  nameLatin: 'Evhenia Chirva',
+  brandName: 'The Video by Evhenia Chirva',
   role: 'Content Creator & Visual Strategist',
   location: 'Кременчук, Україна • Global Remote',
   instagramHandle: 'chirva.cm',
@@ -9,7 +17,7 @@ export const CREATOR_INFO = {
   telegramUrl: 'https://t.me/chirva_cm',
   email: 'chirva.content@gmail.com',
   tagline: 'КОНТЕНТ, ЯКИЙ ЕСТЕЦИЗУЄ БРЕНД ТА ПРОДАЄ БЕЗ НАВ\'ЯЗУВАННЯ',
-  heroDescription: 'Створюю естетичні Reels, UGC, предметні та lifestyle фото для брендів, які прагнуть виглядати премиально і мати високу залученість.',
+  heroDescription: 'Створюю естетичні Reels, UGC, предметні та lifestyle фото для брендів, які прагнуть виглядати преміально і мати високу залученість.',
   heroBadges: [
     { value: '150+', label: 'Створених Reels' },
     { value: '98%', label: 'Задоволених брендів' },
@@ -86,7 +94,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Aesthetic Skincare Launch',
     category: 'photo',
     categoryLabel: 'Предметне фото',
-    imageUrl: '/images/skincare.png',
+    image: 'skincare',
     ratio: 'square',
     metrics: 'Editorial Visual',
     brand: 'AURA Botanical',
@@ -98,8 +106,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Parisian Coat Campaign',
     category: 'reels',
     categoryLabel: 'Reels & Відео',
-    imageUrl: '/images/fashion.png',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-in-a-long-coat-41584-large.mp4',
+    image: 'fashion',
     ratio: 'portrait',
     metrics: '210K+ Переглядів',
     brand: 'Maison Capsule',
@@ -111,7 +118,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Morning Ritual & Matcha',
     category: 'lifestyle',
     categoryLabel: 'Lifestyle',
-    imageUrl: '/images/lifestyle.png',
+    image: 'lifestyle',
     ratio: 'square',
     metrics: '85K+ Залученість',
     brand: 'Nude Living',
@@ -123,8 +130,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Honest Skincare UGC Review',
     category: 'ugc',
     categoryLabel: 'UGC Content',
-    imageUrl: '/images/ugc.png',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-young-woman-filming-a-vlog-with-her-phone-41586-large.mp4',
+    image: 'ugc',
     ratio: 'portrait',
     metrics: '4.8x ROI в Meta Ads',
     brand: 'Serene Beauty',
@@ -136,7 +142,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Creator Studio BTS',
     category: 'lifestyle',
     categoryLabel: 'Lifestyle',
-    imageUrl: '/images/about.png',
+    image: 'about',
     ratio: 'portrait',
     metrics: 'Бекстейдж зйомки',
     brand: 'Zhenya Chirva Studio',
@@ -148,7 +154,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Minimalist Jewelry Concept',
     category: 'photo',
     categoryLabel: 'Предметне фото',
-    imageUrl: '/images/hero.png',
+    image: 'hero',
     ratio: 'portrait',
     metrics: '120K+ Reach',
     brand: 'LUMIERE Fine Jewelry',
@@ -232,7 +238,7 @@ export const COOPERATION_STEPS: CooperationStep[] = [
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     id: 'ig-1',
-    imageUrl: '/images/hero.png',
+    image: 'hero',
     likes: '1,420',
     comments: '84',
     caption: 'Естетика в кожній деталі. Створюємо візуал, який говорить сам за себе. #chirvacm #contentcreator',
@@ -241,7 +247,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: 'ig-2',
-    imageUrl: '/images/fashion.png',
+    image: 'fashion',
     likes: '2,890',
     comments: '132',
     caption: 'Morning walk in Paris style. Як правильно знімати fashion reels для брендів одягу.',
@@ -250,7 +256,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: 'ig-3',
-    imageUrl: '/images/skincare.png',
+    image: 'skincare',
     likes: '1,950',
     comments: '67',
     caption: 'Гра світла та тіні для косметичного бренду. Коли продукт виглядає преміально.',
@@ -259,7 +265,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: 'ig-4',
-    imageUrl: '/images/lifestyle.png',
+    image: 'lifestyle',
     likes: '3,110',
     comments: '148',
     caption: 'Matcha & Kinfolk mood. Естетичні деталі для щоденного натхнення.',
@@ -268,7 +274,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: 'ig-5',
-    imageUrl: '/images/ugc.png',
+    image: 'ugc',
     likes: '4,200',
     comments: '210',
     caption: 'Чому UGC контент продає в 3 рази ефективніше за звичайні макети? Розбір кейсу.',
@@ -277,7 +283,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
   },
   {
     id: 'ig-6',
-    imageUrl: '/images/about.png',
+    image: 'about',
     likes: '2,340',
     comments: '98',
     caption: 'Behind the scenes: день з життя контент-мейкерки. Студія, концепт і світло.',

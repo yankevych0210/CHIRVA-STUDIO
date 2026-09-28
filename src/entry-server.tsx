@@ -1,0 +1,16 @@
+/* eslint-disable react/only-export-components -- server entry, never hot-reloaded */
+import { StrictMode } from 'react'
+import { renderToString } from 'react-dom/server'
+import App from './App.tsx'
+
+export { buildHead } from './seo'
+
+/** Used by scripts/prerender.mjs to bake the page into dist/index.html */
+export function render(): string {
+  return renderToString(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  )
+}
+export { CREATOR_INFO } from './data/portfolioData'

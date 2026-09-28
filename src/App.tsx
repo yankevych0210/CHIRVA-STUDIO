@@ -8,31 +8,27 @@ import { Pricing } from './components/Pricing';
 import { InstagramFeed } from './components/InstagramFeed';
 import { InstagramCTA } from './components/InstagramCTA';
 import { Footer } from './components/Footer';
-import { CREATOR_INFO } from './data/portfolioData';
 
 export function App() {
-  const handleOpenInstagram = () => {
-    window.open(CREATOR_INFO.instagramUrl, '_blank', 'noopener,noreferrer');
-  };
-
   return (
-    <div className="min-h-screen bg-white text-[#1A1A1A] flex flex-col font-sans selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-[#1A1A1A] flex flex-col font-sans">
+      <a href="#main" className="skip-link">Перейти до змісту</a>
+
       {/* Fixed Navigation Header */}
-      <Header onOpenContact={handleOpenInstagram} />
+      <Header />
 
       {/* Main Landing Page Flow */}
-      <main className="flex-1">
-        <Hero onOpenContact={handleOpenInstagram} />
+      <main id="main" className="flex-1">
+        <Hero />
         <About />
-        <Services onSelectService={handleOpenInstagram} />
-        <Portfolio onInquire={handleOpenInstagram} />
-        <Cases onOpenContact={handleOpenInstagram} />
-        <Pricing onSelectPlan={handleOpenInstagram} />
+        <Services />
+        <Portfolio />
+        <Cases />
+        <Pricing />
         <InstagramFeed />
         <InstagramCTA />
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -3,46 +3,32 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════
-   DESIGN TOKENS — Instagram-Inspired Creator UI
+   DESIGN TOKENS — Minimal monochrome editorial UI
 ═══════════════════════════════════════════════ */
 :root {
   /* Base */
   --bg-primary:   #FFFFFF;
   --bg-surface:   #FAFAFA;
-  --bg-surface-2: #F5F5F5;
   --bg-dark:      #0A0A0A;
 
   /* Text */
   --text-main:    #1A1A1A;
   --text-muted:   #737373;
-  --text-light:   #ABABAB;
 
-  /* Minimalist Monochromatic Theme */
-  --accent-black: #000000;
-  --accent-dark: #18181B;
-  --ig-grad: linear-gradient(135deg, #18181B 0%, #09090B 100%);
-  --ig-grad-subtle: linear-gradient(135deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 100%);
+  /* Fonts — self-hosted, all with Cyrillic support */
+  --font-serif:  'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:   'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-script: 'Alex Brush', cursive;
 
-  /* Gold accent (optional accent) */
-  --gold:         #18181B;
-  --gold-light:   #3F3F46;
-
-  /* Border */
-  --border:       rgba(0, 0, 0, 0.09);
-  --border-strong: rgba(0, 0, 0, 0.18);
-
-  /* Fonts */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-mono:  'DM Mono', ui-monospace, monospace;
-  --font-script: 'Alex Brush', cursive, sans-serif;
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
   /* Radius */
-  --r-sm:   12px;
-  --r-md:   18px;
-  --r-lg:   24px;
-  --r-xl:   32px;
   --r-full: 9999px;
+
+  /* Fixed header height used for anchor offsets */
+  --header-h: 72px;
 }
 
 /* ─── Base Reset ─────────────────────────────── */
@@ -53,9 +39,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden; /* fallback for Safari < 16 */
+  overflow-x: clip;
 }
 
 body {
@@ -65,7 +55,14 @@ body {
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-x: clip;
   text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv11', 'ss01'; /* Inter: single-storey a, open digits */
+}
+
+::selection {
+  background: #0A0A0A;
+  color: #fff;
 }
 
 /* Modern text wrap balancing across browsers */
@@ -83,29 +80,62 @@ img, video {
   display: block;
 }
 
-/* ─── Typography Helpers ─────────────────────── */
-.font-serif { font-family: var(--font-serif); }
-
-.font-mono-tag {
-  font-family: var(--font-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.68rem;
-  font-weight: 500;
+/* Keyboard focus ring — visible on both light and dark surfaces */
+:focus-visible {
+  outline: 2px solid #71717A;
+  outline-offset: 3px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
+/* Skip link for keyboard / screen reader users */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--r-full);
+  background: #0A0A0A;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* Full-height that respects mobile browser toolbars (iOS < 15.4 fallback) */
+.h-screen-dynamic {
+  height: 100vh;
+  height: 100dvh;
+}
+
+@layer components {
 /* ─── Container ──────────────────────────────── */
+/* max() keeps content clear of the notch in landscape (viewport-fit=cover) */
 .container-custom {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
 }
-@media (min-width: 640px)  { .container-custom { padding: 0 2rem; } }
-@media (min-width: 1024px) { .container-custom { padding: 0 3rem; } }
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
+  }
+}
+@media (min-width: 1024px) {
+  .container-custom { padding-left: 3rem; padding-right: 3rem; }
+}
 
 /* ═══════════════════════════════════════════════
-   SLEEK AVATAR RING — Avatar wrapper
+   AVATAR RING
 ═══════════════════════════════════════════════ */
 .ig-story-ring {
   padding: 2.5px;
@@ -119,24 +149,6 @@ img, video {
 }
 
 /* ═══════════════════════════════════════════════
-   MINIMALIST HELPERS
-═══════════════════════════════════════════════ */
-.ig-gradient-text {
-  color: #000000;
-  background: none;
-  -webkit-text-fill-color: initial;
-}
-
-.ig-gradient-bg {
-  background: #000000;
-}
-
-.ig-gradient-border {
-  border: 1px solid #000000;
-  position: relative;
-}
-
-/* ═══════════════════════════════════════════════
    KEYFRAMES
 ═══════════════════════════════════════════════ */
 @keyframes shimmer-slide {
@@ -144,210 +156,99 @@ img, video {
   100% { transform: translateX(250%) skewX(-15deg); }
 }
 
-@keyframes float-up {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
-}
-
-@keyframes story-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.7; }
-}
-
 /* ═══════════════════════════════════════════════
    BUTTONS — Editorial & Tactile
 ═══════════════════════════════════════════════ */
-
-/* PRIMARY — Dark pill */
-.btn-primary {
+.btn-primary,
+.btn-secondary,
+.btn-ig {
   position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  background: var(--bg-dark);
-  color: #fff !important;
   min-height: 46px;
   padding: 0.75rem 1.75rem;
   border-radius: var(--r-full);
   font-family: var(--font-sans);
   font-size: 0.86rem;
   font-weight: 500;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.005em;
+  line-height: 1.25;
   text-decoration: none;
-  border: 1px solid var(--bg-dark);
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s ease,
-              background 0.2s ease,
-              border-color 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.25s var(--ease-out-expo),
+              box-shadow 0.25s ease,
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
 }
 
-.btn-primary:hover {
-  background: #27272A;
-  border-color: #27272A;
-  transform: translateY(-1.5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-}
-
-.btn-primary:active {
-  transform: scale(0.97);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+/* PRIMARY — Dark pill */
+.btn-primary {
+  background: var(--bg-dark);
+  color: #fff !important;
+  border: 1px solid var(--bg-dark);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 
 /* SECONDARY — Subtle border pill */
 .btn-secondary {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
   background: transparent;
   color: var(--text-main) !important;
-  min-height: 46px;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--r-full);
-  font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 500;
-  letter-spacing: 0.015em;
-  text-decoration: none;
   border: 1px solid rgba(0, 0, 0, 0.16);
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.2s ease,
-              border-color 0.2s ease,
-              color 0.2s ease,
-              box-shadow 0.2s ease;
-  user-select: none;
 }
 
-.btn-secondary:hover {
-  background: #000000;
-  border-color: #000000;
-  color: #fff !important;
-  transform: translateY(-1.5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.btn-secondary:active {
-  transform: scale(0.97);
-}
-
-/* BLACK CTA BUTTON */
+/* BLACK CTA BUTTON with shimmer */
 .btn-ig {
-  position: relative;
   overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
   background: #000000;
   color: #fff !important;
-  min-height: 46px;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--r-full);
-  font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 500;
-  letter-spacing: 0.015em;
-  text-decoration: none;
   border: 1px solid #000000;
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s ease,
-              background 0.2s ease;
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  user-select: none;
 }
 
 .btn-ig::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%);
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.14) 50%, transparent 65%);
   transform: translateX(-150%) skewX(-15deg);
   pointer-events: none;
 }
 
-.btn-ig:hover::before { animation: shimmer-slide 0.55s ease forwards; }
-
-.btn-ig:hover {
-  background: #27272A;
-  border-color: #27272A;
-  transform: translateY(-1.5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
+.btn-primary:active,
+.btn-secondary:active,
 .btn-ig:active {
   transform: scale(0.97);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* ACCENT BLACK CTA */
-.btn-gold {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  background: #18181B;
-  color: #FAFAFA !important;
-  padding: 0.8rem 2rem;
-  border-radius: var(--r-full);
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border: 1px solid #18181B;
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, background 0.25s ease;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
-}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover,
+  .btn-ig:hover {
+    background: #27272A;
+    border-color: #27272A;
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  }
 
-.btn-gold:hover {
-  background: #000000;
-  border-color: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-}
+  .btn-ig:hover::before { animation: shimmer-slide 0.55s ease forwards; }
 
-.btn-gold:active { transform: translateY(0); }
-
-/* PILL tag */
-.btn-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--bg-surface);
-  border: 1.5px solid var(--border);
-  padding: 0.45rem 1rem;
-  border-radius: var(--r-full);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-main);
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-pill:hover {
-  border-color: #000000;
-  color: #000000;
-  background: rgba(0,0,0,0.04);
-  transform: translateY(-1px);
+  .btn-secondary:hover {
+    background: #000000;
+    border-color: #000000;
+    color: #fff !important;
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
 }
 
 /* ═══════════════════════════════════════════════
    EDITORIAL SECTION EYEBROWS
-   Human-crafted typographic labels instead of
-   generic AI pill badges
 ═══════════════════════════════════════════════ */
 .section-eyebrow {
   display: inline-flex;
@@ -386,53 +287,6 @@ img, video {
   font-weight: 500;
 }
 
-.badge-editorial {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.75rem;
-  background: #F4F4F5;
-  border: 1px solid #E4E4E7;
-  border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #52525B;
-}
-
-/* Black badge */
-.badge-ig {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.85rem;
-  background: #000000;
-  color: #ffffff;
-  border: 1px solid #000000;
-  border-radius: var(--r-full);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-/* ═══════════════════════════════════════════════
-   CARD BASE
-═══════════════════════════════════════════════ */
-.card-ig {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.card-ig:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-  transform: translateY(-3px);
 }
 
 /* ─── Scrollbars ─────────────────────────────── */
@@ -440,34 +294,57 @@ img, video {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ═══════════════════════════════════════════════
-   MOBILE-SPECIFIC OVERRIDES
+   SCROLL REVEAL
+   Hidden state only applies when JS is running (html.js),
+   so crawlers and no-JS visitors always see the content.
 ═══════════════════════════════════════════════ */
-@media (max-width: 767px) {
-  /* Disable hover-only effects on touch */
-  .card-ig:hover {
-    transform: none;
-    box-shadow: none;
+.reveal {
+  --reveal-y: 32px;
+  --reveal-duration: 580ms;
+  --reveal-wait: min(calc(var(--reveal-delay, 0ms) * 0.5), 80ms);
+}
+@media (min-width: 768px) {
+  .reveal {
+    --reveal-y: 44px;
+    --reveal-duration: 660ms;
+    --reveal-wait: min(var(--reveal-delay, 0ms), 140ms);
   }
+}
 
-  /* Ensure buttons are comfortably tappable (44px min) */
-  .btn-primary,
-  .btn-secondary,
-  .btn-ig,
-  .btn-gold,
-  .btn-pill {
-    min-height: 44px;
-  }
+.js .reveal {
+  transition-property: opacity, transform;
+  transition-duration: var(--reveal-duration);
+  transition-timing-function: var(--ease-out-expo);
+  transition-delay: var(--reveal-wait);
+}
 
-  /* Sections: slightly tighter vertical rhythm on small screens */
-  section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+.js .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y), 0);
+  will-change: opacity, transform;
+}
+.js .reveal[data-reveal='fade-in']:not(.is-visible) {
+  transform: none;
+}
+.js .reveal[data-reveal='scale-up']:not(.is-visible) {
+  transform: scale(0.94) translate3d(0, 28px, 0);
+}
+@media (min-width: 768px) {
+  .js .reveal[data-reveal='scale-up']:not(.is-visible) {
+    transform: scale(0.92) translate3d(0, 36px, 0);
   }
+  .js .reveal[data-reveal='slide-right']:not(.is-visible) {
+    transform: translate3d(-28px, 0, 0);
+  }
+  .js .reveal[data-reveal='slide-left']:not(.is-visible) {
+    transform: translate3d(28px, 0, 0);
+  }
+}
 
-  /* Prevent any horizontal overflow from transforms */
-  section {
-    overflow-x: clip;
-  }
+/* Fast scroll: snappy, no stagger, so content never lags behind the finger */
+.js .reveal.reveal-instant {
+  --reveal-duration: 200ms;
+  --reveal-wait: 0ms;
 }
 
 /* ─── Reduced motion ─────────────────────────── */
@@ -476,15 +353,10 @@ img, video {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* ─── iOS Safari safe-area insets ─────────────── */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  body {
-    padding-bottom: env(safe-area-inset-bottom);
+  .js .reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
   }
 }

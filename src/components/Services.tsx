@@ -3,11 +3,7 @@ import { SERVICES, CREATOR_INFO } from '../data/portfolioData';
 import { InstagramIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
 
-interface ServicesProps {
-  onSelectService: () => void;
-}
-
-export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectService }) => {
+export const Services: React.FC = () => {
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Film':     return <Film className="w-5 h-5" />;
@@ -19,46 +15,47 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
   };
 
   return (
-    <section id="services" className="py-14 md:py-20 relative bg-white">
+    <section id="services" aria-labelledby="services-title" className="py-14 md:py-24 relative bg-white">
       <div className="container-custom">
 
         {/* Header */}
         <ScrollReveal animation="fade-up" delay={50}>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-5 md:gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="section-eyebrow">
                 <span className="section-eyebrow-line" />
-                <span className="section-eyebrow-num">03</span>
+                <span className="section-eyebrow-num">02</span>
                 <span className="section-eyebrow-sep">/</span>
                 <span className="section-eyebrow-text">Послуги</span>
               </div>
-              <h2 className="font-serif text-[1.7rem] sm:text-5xl leading-tight text-[#1A1A1A]">
+              <h2 id="services-title" className="font-serif text-[2rem] sm:text-5xl leading-tight text-[#1A1A1A]">
                 Що я створюю для <span className="hidden sm:inline"><br /></span>
                 <span className="italic font-normal text-black relative inline-block">
                   вашого бренду
-                  <span className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
+                  <span aria-hidden="true" className="absolute bottom-1 left-0 right-0 h-[2px] bg-black/15" />
                 </span>
               </h2>
             </div>
-            <p className="text-sm text-[#737373] max-w-md leading-relaxed">
+            <p className="text-sm text-[#6B6B6B] max-w-md leading-relaxed">
               Від точкових вірусних роликів до повного візуального супроводу. Кожна послуга адаптується під концепт вашого проєкту.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {SERVICES.map((service, idx) => (
-            <ScrollReveal key={service.id} animation="fade-up" delay={150 + idx * 100}>
+            <ScrollReveal key={service.id} animation="fade-up" delay={150 + idx * 100} className="h-full">
               <div
-                className={`group p-7 sm:p-9 rounded-[20px] sm:rounded-[28px] border transition-all duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
+                className={`group p-6 sm:p-9 rounded-[20px] sm:rounded-[28px] border transition-[box-shadow,border-color,transform] duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
                   service.isHighlighted
                     ? 'bg-[#0A0A0A] text-white border-[#0A0A0A] shadow-2xl'
-                    : 'bg-[#FAFAFA] border-[#EBEBEB] text-[#1A1A1A] hover:shadow-xl hover:border-black/30'
+                    : 'bg-[#FAFAFA] border-[#EBEBEB] text-[#1A1A1A] hover:shadow-xl hover:border-black/30 hover:-translate-y-0.5'
                 }`}
               >
                 {/* Dark/Black top line on hover */}
                 <div
+                  aria-hidden="true"
                   className={`absolute top-0 left-0 right-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-400 ${
                     service.isHighlighted ? 'bg-white' : 'bg-black'
                   }`}
@@ -68,6 +65,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                   {/* Number & Icon */}
                   <div className="flex items-center justify-between">
                     <span
+                      aria-hidden="true"
                       className={`font-serif text-4xl font-light ${
                         service.isHighlighted ? 'text-white' : 'text-black'
                       }`}
@@ -75,6 +73,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                       {service.number}
                     </span>
                     <div
+                      aria-hidden="true"
                       className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                         service.isHighlighted ? 'bg-white text-black' : 'bg-black text-white'
                       }`}
@@ -90,16 +89,16 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                     }`}>
                       {service.title}
                     </h3>
-                    <div className={`text-xs font-semibold uppercase tracking-wider ${
-                      service.isHighlighted ? 'text-white/70' : 'text-[#737373]'
+                    <p className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider leading-snug ${
+                      service.isHighlighted ? 'text-white/70' : 'text-[#6B6B6B]'
                     }`}>
                       {service.subtitle}
-                    </div>
+                    </p>
                   </div>
 
                   {/* Description */}
                   <p className={`text-sm leading-relaxed ${
-                    service.isHighlighted ? 'text-white/80' : 'text-[#737373]'
+                    service.isHighlighted ? 'text-white/80' : 'text-[#6B6B6B]'
                   }`}>{service.description}</p>
 
                   {/* Deliverables */}
@@ -113,10 +112,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                     </span>
                     <ul className="space-y-2">
                       {service.deliverables.map((item, dIdx) => (
-                        <li key={dIdx} className={`flex items-start gap-2.5 text-xs ${
-                          service.isHighlighted ? 'text-white/85' : 'text-[#737373]'
+                        <li key={dIdx} className={`flex items-start gap-2.5 text-[13px] leading-snug ${
+                          service.isHighlighted ? 'text-white/85' : 'text-[#52525B]'
                         }`}>
-                          <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                          <div aria-hidden="true" className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                             service.isHighlighted ? 'bg-white text-black' : 'bg-black text-white'
                           }`}>
                             <Check className="w-2.5 h-2.5" />
@@ -137,15 +136,15 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService: _onSelectSe
                       href={CREATOR_INFO.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-full py-3 text-xs justify-center shadow-md hover:shadow-xl transition-all cursor-pointer rounded-full inline-flex items-center gap-2 font-semibold ${
+                      className={`w-full py-3 text-[13px] justify-center whitespace-nowrap shadow-md hover:shadow-xl transition-all cursor-pointer rounded-full inline-flex items-center gap-2 font-semibold ${
                         service.isHighlighted
-                          ? 'bg-white text-black hover:bg-neutral-100'
+                          ? 'min-h-[46px] bg-white text-black hover:bg-neutral-100'
                           : 'btn-ig'
                       }`}
                     >
-                      <InstagramIcon className="w-4 h-4" />
-                      <span>Обговорити проєкт в Direct</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <InstagramIcon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <span>Обговорити в Direct</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                     </a>
                   </div>
                 </div>

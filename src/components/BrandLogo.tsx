@@ -29,7 +29,8 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         height={h}
         className="w-auto block"
         style={{ height: `${h}px` }}
-        aria-label="The Video BY EVHENIA CHIRVA"
+        role="img"
+        aria-label="The Video by Evhenia Chirva"
       >
         {/* Handwritten Cursive 'The' */}
         <text
@@ -38,7 +39,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           fill={textColor}
           fontSize="48"
           fontStyle="italic"
-          style={{ fontFamily: "'Alex Brush', cursive, sans-serif" }}
+          style={{ fontFamily: 'var(--font-script)' }}
         >
           The
         </text>
@@ -51,7 +52,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           fontSize="56"
           fontWeight="300"
           letterSpacing="-1.5"
-          style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          style={{ fontFamily: 'var(--font-serif)' }}
         >
           Video
         </text>
@@ -65,7 +66,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           fontWeight="600"
           letterSpacing="4"
           textAnchor="middle"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
+          style={{ fontFamily: "'DM Sans', var(--font-sans)" }}
         >
           BY EVHENIA CHIRVA
         </text>

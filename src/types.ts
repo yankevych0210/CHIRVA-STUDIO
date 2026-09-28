@@ -1,10 +1,12 @@
+import type { PhotoName } from './lib/photos';
+
 export interface PortfolioItem {
   id: string;
   title: string;
   category: 'reels' | 'ugc' | 'photo' | 'lifestyle';
   categoryLabel: string;
-  imageUrl: string;
-  videoUrl?: string; // Optional HTML5 video fallback / ambient loop preview
+  image: PhotoName;
+  videoUrl?: string; // Optional self-hosted MP4 (e.g. /videos/work.mp4) played in the lightbox
   ratio: 'portrait' | 'square' | 'tall';
   metrics?: string; // e.g. "145K+ Переглядів"
   brand?: string;
@@ -43,7 +45,7 @@ export interface CooperationStep {
 
 export interface InstagramPost {
   id: string;
-  imageUrl: string;
+  image: PhotoName;
   likes: string;
   comments: string;
   caption: string;

@@ -1,39 +1,42 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+
+type RevealAnimation = 'fade-up' | 'fade-in' | 'scale-up' | 'slide-right' | 'slide-left';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  animation?: 'fade-up' | 'fade-in' | 'scale-up' | 'slide-right' | 'slide-left';
-  delay?: number; // delay in ms
-  duration?: number; // duration in ms
+  animation?: RevealAnimation;
+  delay?: number; // stagger delay in ms (capped in CSS: 80ms mobile, 140ms desktop)
   className?: string;
-  threshold?: number;
 }
 
-// Global scroll velocity tracker so all ScrollReveal instances know if user is scrolling fast
-let isFastScrolling = false;
-let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
-let lastScrollTime = Date.now();
+// ─── Shared state for every ScrollReveal instance ───────────────────────────
+// One IntersectionObserver + one scroll listener for the whole page instead of
+// one per element. Visibility is toggled with a class directly on the DOM node,
+// so revealing never re-renders React. Timings live in index.css (.reveal).
 
-if (typeof window !== 'undefined') {
+const VISIBLE = 'is-visible';
+const INSTANT = 'reveal-instant';
+const FAST_SCROLL_SPEED = 0.7; // px per ms (~700px/s)
+
+let observer: IntersectionObserver | null = null;
+let isFastScrolling = false;
+
+function trackScrollVelocity() {
+  let lastY = window.scrollY;
+  let lastTime = performance.now();
+  let settleTimer: ReturnType<typeof setTimeout> | undefined;
+
   window.addEventListener(
     'scroll',
     () => {
-      const now = Date.now();
-      const deltaY = Math.abs(window.scrollY - lastScrollY);
-      const deltaTime = Math.max(now - lastScrollTime, 1);
-      const speed = deltaY / deltaTime; // pixels per ms
+      const now = performance.now();
+      const speed = Math.abs(window.scrollY - lastY) / Math.max(now - lastTime, 1);
+      if (speed > FAST_SCROLL_SPEED) isFastScrolling = true;
+      lastY = window.scrollY;
+      lastTime = now;
 
-      // If scrolling faster than 0.7px/ms (~700px/s), treat as fast scroll
-      if (speed > 0.7) {
-        isFastScrolling = true;
-      }
-
-      lastScrollY = window.scrollY;
-      lastScrollTime = now;
-
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
         isFastScrolling = false;
       }, 120);
     },
@@ -41,143 +44,75 @@ if (typeof window !== 'undefined') {
   );
 }
 
+function getObserver(): IntersectionObserver {
+  if (observer) return observer;
+
+  trackScrollVelocity();
+
+  // Trigger when the element is ~50px (mobile) / ~80px (desktop) inside the
+  // screen, so the motion happens right in the user's field of view.
+  const isMobileView = window.matchMedia('(max-width: 767px)').matches;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target as HTMLElement;
+        if (isFastScrolling) el.classList.add(INSTANT);
+        el.classList.add(VISIBLE);
+        io.unobserve(el);
+      }
+    },
+    {
+      threshold: 0.08,
+      rootMargin: isMobileView ? '0px 0px -50px 0px' : '0px 0px -80px 0px',
+    }
+  );
+  observer = io;
+  return io;
+}
+
+function reveal(node: HTMLElement): (() => void) | undefined {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    node.classList.add(VISIBLE);
+    return;
+  }
+
+  // Already on screen at mount (e.g. hero): play the entrance on the next frame
+  const rect = node.getBoundingClientRect();
+  if (rect.top < window.innerHeight - 80 && rect.bottom >= 0) {
+    const frame = requestAnimationFrame(() => node.classList.add(VISIBLE));
+    return () => cancelAnimationFrame(frame);
+  }
+
+  const io = getObserver();
+  io.observe(node);
+  return () => io.unobserve(node);
+}
+
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   animation = 'fade-up',
   delay = 0,
-  duration = 420,
   className = '',
-  threshold = 0,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [enteredAlreadyInView, setEnteredAlreadyInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) {
-      setIsVisible(true);
-      return;
-    }
-
     const node = ref.current;
     if (!node) return;
-
-    // Only reveal elements that are truly visible in the viewport on initial page load
-    const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80 && rect.bottom >= 0) {
-      setIsVisible(true);
-      return;
-    }
-
-    // Golden balance trigger point:
-    // When element is ~50px (mobile) or ~80px (desktop) inside the screen,
-    // it triggers right in the user's field of view so the animation is clearly, beautifully visible!
-    const isMobileView = window.innerWidth < 768;
-    const rootMargin = isMobileView ? '0px 0px -50px 0px' : '0px 0px -80px 0px';
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (isFastScrolling) {
-            setEnteredAlreadyInView(true);
-          }
-          setIsVisible(true);
-          observer.unobserve(node);
-        }
-      },
-      {
-        threshold: 0.08,
-        rootMargin,
-      }
-    );
-
-    observer.observe(node);
-
-    return () => {
-      if (node) observer.unobserve(node);
-    };
-  }, [threshold]);
-
-  const getAnimationStyles = (): React.CSSProperties => {
-    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
-    const isFast = enteredAlreadyInView || isFastScrolling;
-
-    // Fast scroll: zero delay so content never lags.
-    // Slow / normal scroll: subtle elegant stagger (max 80ms on mobile, 140ms on desktop)
-    const effectiveDelay = isFast
-      ? 0
-      : (isMobile ? Math.min(delay * 0.5, 80) : Math.min(delay, 140));
-
-    // Fast scroll: snappy 200ms.
-    // Slow / normal scroll: rich 580ms (mobile) to 660ms (desktop) for clearly visible, silky motion
-    const effectiveDuration = isFast
-      ? 200
-      : (isMobile ? Math.max(duration, 580) : Math.max(duration, 660));
-
-    // Fast scroll: subtle 8px to prevent jitter.
-    // Slow / normal scroll: clearly noticeable, graceful lift (32px mobile, 44px desktop)
-    const translateYDistance = isFast
-      ? '8px'
-      : (isMobile ? '32px' : '44px');
-
-    const baseStyle: React.CSSProperties = {
-      transitionProperty: 'transform, opacity',
-      transitionDuration: `${effectiveDuration}ms`,
-      transitionTimingFunction: 'cubic-bezier(0.19, 1, 0.22, 1)',
-      transitionDelay: `${effectiveDelay}ms`,
-      willChange: isVisible ? 'auto' : 'transform, opacity',
-    };
-
-    if (!isVisible) {
-      switch (animation) {
-        case 'fade-up':
-          return {
-            ...baseStyle,
-            opacity: 0,
-            transform: `translateY(${translateYDistance})`,
-          };
-        case 'scale-up':
-          return {
-            ...baseStyle,
-            opacity: 0,
-            transform: isFast
-              ? 'scale(0.98) translateY(8px)'
-              : (isMobile ? 'scale(0.94) translateY(28px)' : 'scale(0.92) translateY(36px)'),
-          };
-        case 'slide-right':
-          return {
-            ...baseStyle,
-            opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(-28px)',
-          };
-        case 'slide-left':
-          return {
-            ...baseStyle,
-            opacity: 0,
-            transform: isMobile ? `translateY(${translateYDistance})` : 'translateX(28px)',
-          };
-        case 'fade-in':
-        default:
-          return {
-            ...baseStyle,
-            opacity: 0,
-          };
-      }
-    }
-
-    return {
-      ...baseStyle,
-      opacity: 1,
-      transform: 'none',
-    };
-  };
+    return reveal(node);
+  }, []);
 
   return (
-    <div ref={ref} style={getAnimationStyles()} className={className}>
+    <div
+      ref={ref}
+      data-reveal={animation}
+      className={`reveal ${className}`}
+      style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties}
+    >
       {children}
     </div>
   );
 };
-

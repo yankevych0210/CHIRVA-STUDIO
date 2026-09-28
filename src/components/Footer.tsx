@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-16 pb-10 border-t border-white/[0.07]">
+    <footer className="bg-[#0A0A0A] text-white pt-14 sm:pt-16 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] border-t border-white/[0.07]">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/[0.07]">
 
@@ -15,22 +15,22 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-5 space-y-5">
             <BrandLogo isDarkBackground={true} />
 
-            <p className="text-sm text-white/50 max-w-xs leading-relaxed">
+            <p className="text-sm text-white/60 max-w-xs leading-relaxed">
               Контент-мейкерка & візуальна стратегиня. Естетичний фото та відеоконтент для брендів, що формує емоційний зв'язок з аудиторією.
             </p>
 
-            <div className="text-xs text-white/40 font-medium uppercase tracking-wider flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-white/60 shrink-0" />
+            <div className="text-xs text-white/50 font-medium uppercase tracking-wider flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-white/60 shrink-0" aria-hidden="true" />
               <span>Кременчук, Україна · Global Remote</span>
             </div>
           </div>
 
           {/* Nav */}
-          <div className="md:col-span-3 space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40 block">
+          <nav className="md:col-span-3 space-y-4" aria-label="Навігація у футері">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/50 block">
               Навігація
             </span>
-            <ul className="space-y-2.5">
+            <ul className="grid grid-cols-2 md:grid-cols-1 gap-x-6 gap-y-1 md:gap-y-2.5">
               {[
                 { href: '#about',     label: 'Про мене' },
                 { href: '#services',  label: 'Послуги' },
@@ -41,18 +41,18 @@ export const Footer: React.FC = () => {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="inline-block py-2.5 md:py-0 text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Socials */}
           <div className="md:col-span-4 space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40 block">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/50 block">
               Instagram Direct
             </span>
 
@@ -63,10 +63,10 @@ export const Footer: React.FC = () => {
               className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-[#18181B] transition-all group"
               style={{ background: 'rgba(255,255,255,0.04)' }}
             >
-              <InstagramIcon className="w-5 h-5 text-white" />
+              <InstagramIcon className="w-5 h-5 text-white" aria-hidden="true" />
               <div>
                 <div className="text-sm font-semibold text-white">@{CREATOR_INFO.instagramHandle}</div>
-                <div className="text-xs text-white/40">Написати в Direct</div>
+                <div className="text-xs text-white/50">Написати в Direct</div>
               </div>
             </a>
           </div>
@@ -74,14 +74,15 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/30">
-          <div>© 2026 Женя Чирва. Усі права захищено.</div>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
+          <p suppressHydrationWarning>© {new Date().getFullYear()} {CREATOR_INFO.name}. Усі права захищено.</p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs font-semibold text-white/30 hover:text-white transition-colors cursor-pointer"
+            type="button"
+            className="flex items-center gap-2 min-h-[44px] px-2 text-xs font-semibold tracking-wider text-white/50 hover:text-white transition-colors cursor-pointer"
           >
             <span>НАГОРУ</span>
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 

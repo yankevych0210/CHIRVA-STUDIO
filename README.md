@@ -1,6 +1,6 @@
 # ✨ Женя Чирва — Personal Brand & Creator Portfolio
 
-Сучасний премиальный односторінковий сайт-портфоліо (**landing page**) для контент-мейкерки та візуальної стратегині **Жені Чирви** ([@chirva.cm](https://www.instagram.com/chirva.cm/)).
+Сучасний преміальний односторінковий сайт-портфоліо (**landing page**) для контент-мейкерки та візуальної стратегині **Жені Чирви** ([@chirva.cm](https://www.instagram.com/chirva.cm/)).
 
 Сайт розроблено в стилістиці **minimalistic editorial + fashion creator**, що формує відчуття дорогого та професійного личного бренду.
 
@@ -8,9 +8,11 @@
 
 ## 🎨 Візуальна концепція та палітра
 
-- **Палітра**: Теплий молочний шовк (`#FAF8F5`), нюдовий бежевий (`#F4EFEA`), шампань-голд (`#C5A059`) та теплий еспресо (`#1D1A17`).
-- **Типографіка**: Журнальна пара шрифтів — `Instrument Serif` (editorial заголовки та акценти) та `Plus Jakarta Sans` (сучасна чітка типографіка для UI).
-- **Mobile First**: Повна оптимізація під смарт-фони (від 320px до 1920px+). Зручні сенсорні кнопки, фіксований стекі-хедер та розмите мобільне меню.
+- **Палітра**: монохром — білий, `#FAFAFA`, графіт `#1A1A1A` та чорний `#0A0A0A`.
+- **Типографіка** (self-hosted через Fontsource, з підтримкою кирилиці):
+  `Cormorant Garamond` — editorial-заголовки, `Inter` — текст та UI, `IBM Plex Mono` — підписи й мітки,
+  `Alex Brush` + `DM Sans` — лише у логотипі.
+- **Mobile First**: від 320px до 1920px+, safe-area для iPhone, hover-ефекти лише на пристроях з мишею.
 
 ---
 
@@ -31,35 +33,51 @@
 ## 🛠 Технології
 
 - **Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vite.dev/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), Custom CSS Variables Design System
-- **Icons**: [Lucide React](https://lucide.dev/) + Custom SVG Components
-- **Fonts**: Google Fonts (`Instrument Serif` & `Plus Jakarta Sans`)
+- **Styling**: [Tailwind CSS v3](https://v3.tailwindcss.com/) + CSS-змінні (`src/index.css`)
+- **Icons**: [Lucide React](https://lucide.dev/) + власні SVG
+- **SEO**: статичний пре-рендер HTML під час збірки, Open Graph, JSON-LD (Person / ProfessionalService / WebSite), robots.txt, sitemap.xml
 
 ---
 
 ## 📦 Встановлення та запуск
 
 ```bash
-# 1. Встановити залежності
-npm install
-
-# 2. Запустити локальний dev-сервер
-npm run dev
-# Сайт доступний за адресою http://localhost:5173/
-
-# 3. Збірка продакшн-версії
-npm run build
+npm install        # залежності
+npm run dev        # dev-сервер → http://localhost:5173/
+npm run build      # продакшн-збірка в dist/ (з пре-рендером HTML)
+npm run preview    # перегляд продакшн-збірки
+npm run lint       # oxlint
 ```
+
+---
+
+## 🌐 Домен сайту (важливо для SEO)
+
+Вкажіть домен у `src/data/portfolioData.ts` → `CREATOR_INFO.siteUrl` (наприклад `'https://chirva.studio'`)
+або під час збірки: `SITE_URL=https://chirva.studio npm run build`.
+Тоді у збірку додаються `canonical`, `og:url`, абсолютні посилання на OG-картинку та `sitemap.xml`.
 
 ---
 
 ## 📝 Редагування контенту
 
-Усі тексти, фотографії, посилання на Instagram/Telegram та тарифні плани винесені в один конфігураційний файл:
+Усі тексти, послуги, роботи портфоліо, прайс та посилання — в одному файлі: `src/data/portfolioData.ts`.
+SEO-заголовок та опис — `src/seo.ts` та `index.html`.
 
-📍 `src/data/portfolioData.ts`
+### Фото
 
-Ви можете легко замінювати ціни, контактні дані, назви послуг та зображення в одному місці без редагування компонентів.
+1. Покладіть оригінал (PNG/JPG) у `assets/originals/`, наприклад `assets/originals/newwork.png`.
+2. Запустіть `npm run images` (потрібен `cwebp`: `brew install webp`) — з'являться `public/images/newwork-480.webp` та `-960.webp`.
+3. Додайте назву в `PhotoName` та `PHOTO_SIZE` у `src/lib/photos.ts` і використайте `image: 'newwork'` у даних.
+
+### Відео у портфоліо
+
+Покладіть MP4 у `public/videos/` і вкажіть `videoUrl: '/videos/work.mp4'` у роботі — воно відтворюватиметься в лайтбоксі.
+
+### Фавікон
+
+Вихідник монограми — `assets/brand/monogram.svg`. Готові іконки лежать у `public/`
+(`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192/512.png`, `icon-maskable-512.png`, `og-image.jpg`).
 
 ---
 
