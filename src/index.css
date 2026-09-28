@@ -347,12 +347,22 @@ img, video {
   }
 }
 
-/* Entered the view mid-flick: quick fade in place — no sliding under the finger */
-.js .reveal.reveal-fast {
-  transition: opacity 220ms ease-out, transform 0s;
+/* Swipe / fast scroll: same rise, started at the screen edge and played faster,
+   so the motion is visible without leaving a gap behind the finger */
+.js .reveal.reveal-quick {
+  --reveal-duration: 440ms;
+  --reveal-wait: min(var(--reveal-delay, 0ms), 90ms);
+}
+@media (min-width: 768px) {
+  .js .reveal.reveal-quick { --reveal-duration: 500ms; }
+}
+@media (min-width: 1024px) {
+  .js .reveal.reveal-quick {
+    --reveal-wait: min(var(--reveal-delay-lg, var(--reveal-delay, 0ms)), 90ms);
+  }
 }
 
-/* Revealed off-screen (flick look-ahead) or already scrolled past: no motion at all */
+/* Already scrolled past (anchor jump / restored scroll position): no motion */
 .js .reveal.reveal-instant {
   transition: none;
 }
