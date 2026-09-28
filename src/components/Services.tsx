@@ -19,7 +19,7 @@ export const Services: React.FC = () => {
       <div className="container-custom">
 
         {/* Header */}
-        <ScrollReveal animation="fade-up" delay={50}>
+        <ScrollReveal animation="fade-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-5 md:gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="section-eyebrow">
@@ -45,7 +45,7 @@ export const Services: React.FC = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {SERVICES.map((service, idx) => (
-            <ScrollReveal key={service.id} animation="fade-up" delay={150 + idx * 100} className="h-full">
+            <ScrollReveal key={service.id} animation="fade-up" delay={0} delayLg={(idx % 2) * 110} className="h-full">
               <div
                 className={`group p-6 sm:p-9 rounded-[20px] sm:rounded-[28px] border transition-[box-shadow,border-color,transform] duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
                   service.isHighlighted

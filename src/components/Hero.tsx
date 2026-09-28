@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col items-start space-y-8">
 
             {/* Headline */}
-            <ScrollReveal animation="fade-up" delay={150}>
+            <ScrollReveal onLoad animation="fade-up" delay={0}>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span aria-hidden="true" className="hidden xs:block w-8 h-[1px] bg-black/30 shrink-0" />
@@ -42,14 +42,14 @@ export const Hero: React.FC = () => {
             </ScrollReveal>
 
             {/* Bio */}
-            <ScrollReveal animation="fade-up" delay={250}>
+            <ScrollReveal onLoad animation="fade-up" delay={90}>
               <p className="text-base sm:text-lg text-[#52525B] max-w-lg leading-relaxed font-normal">
                 {CREATOR_INFO.heroDescription}
               </p>
             </ScrollReveal>
 
             {/* CTAs */}
-            <ScrollReveal animation="fade-up" delay={350} className="w-full sm:w-auto">
+            <ScrollReveal onLoad animation="fade-up" delay={170} className="w-full sm:w-auto">
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <a
                   href={CREATOR_INFO.instagramUrl}
@@ -73,7 +73,7 @@ export const Hero: React.FC = () => {
             </ScrollReveal>
 
             {/* Stats */}
-            <ScrollReveal animation="fade-up" delay={450} className="w-full">
+            <ScrollReveal onLoad animation="fade-up" delay={240} className="w-full">
               <dl className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-3 sm:gap-6">
                 {CREATOR_INFO.heroBadges.map((badge) => (
                   <div key={badge.label} className="flex flex-col-reverse gap-1">
@@ -91,7 +91,7 @@ export const Hero: React.FC = () => {
 
           {/* Right: Instagram Profile Card */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <ScrollReveal animation="scale-up" delay={200} className="w-full max-w-[360px] sm:max-w-[420px]">
+            <ScrollReveal onLoad animation="scale-up" delay={120} className="w-full max-w-[360px] sm:max-w-[420px]">
               <div className="relative w-full">
 
                 {/* Main photo card */}

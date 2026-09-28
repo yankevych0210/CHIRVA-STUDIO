@@ -33,7 +33,7 @@ export const Portfolio: React.FC = () => {
       <div className="container-custom">
 
         {/* Header */}
-        <ScrollReveal animation="fade-up" delay={50}>
+        <ScrollReveal animation="fade-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-5 md:gap-6">
             <div className="space-y-3 max-w-xl">
               <div className="section-eyebrow">
@@ -57,7 +57,7 @@ export const Portfolio: React.FC = () => {
         </ScrollReveal>
 
         {/* Filter tabs — scroll edge-to-edge on mobile */}
-        <ScrollReveal animation="fade-up" delay={150}>
+        <ScrollReveal animation="fade-up" delay={80}>
           <div
             role="group"
             aria-label="Фільтр робіт за категорією"
@@ -88,7 +88,7 @@ export const Portfolio: React.FC = () => {
         <ul className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {filteredItems.map((item, idx) => (
             <li key={item.id}>
-              <ScrollReveal animation="fade-up" delay={100 + (idx % 3) * 100} className="h-full">
+              <ScrollReveal animation="fade-up" delay={(idx % 2) * 90} delayLg={(idx % 3) * 90} className="h-full">
                 <button
                   type="button"
                   onClick={() => setSelectedItem(item)}

@@ -11,7 +11,7 @@ export const InstagramFeed: React.FC = () => {
       <div className="container-custom">
 
         {/* Header */}
-        <ScrollReveal animation="fade-up" delay={50}>
+        <ScrollReveal animation="fade-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="space-y-3 max-w-xl">
               <div className="section-eyebrow">
@@ -43,7 +43,7 @@ export const InstagramFeed: React.FC = () => {
         </ScrollReveal>
 
         {/* Instagram Profile Card */}
-        <ScrollReveal animation="scale-up" delay={150}>
+        <ScrollReveal animation="scale-up" delay={80}>
           <div className="p-4 sm:p-5 mb-5 sm:mb-8 rounded-2xl bg-white border border-[#EBEBEB] shadow-sm flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               {/* Story ring avatar */}
@@ -86,7 +86,7 @@ export const InstagramFeed: React.FC = () => {
         <ul className="grid grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2.5">
           {INSTAGRAM_POSTS.map((post, idx) => (
             <li key={post.id}>
-            <ScrollReveal animation="fade-up" delay={200 + idx * 60} className="h-full">
+            <ScrollReveal animation="fade-up" delay={(idx % 3) * 70} delayLg={idx * 40} className="h-full">
               <a
                 href={post.url}
                 target="_blank"

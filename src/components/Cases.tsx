@@ -33,7 +33,7 @@ export const Cases: React.FC = () => {
       <div className="container-custom">
 
         {/* Header */}
-        <ScrollReveal animation="fade-up" delay={50}>
+        <ScrollReveal animation="fade-up">
           <div className="space-y-3 max-w-2xl mb-10 md:mb-14">
             <div className="section-eyebrow">
               <span className="section-eyebrow-line" />
@@ -54,7 +54,7 @@ export const Cases: React.FC = () => {
         {/* Format Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-10 md:mb-14">
           {formats.map((fmt, idx) => (
-            <ScrollReveal key={fmt.title} animation="fade-up" delay={150 + idx * 100} className="h-full">
+            <ScrollReveal key={fmt.title} animation="fade-up" delay={0} delayLg={idx * 90} className="h-full">
               <div
                 className="group p-6 sm:p-7 rounded-[20px] sm:rounded-[24px] bg-white border border-[#EBEBEB] hover:shadow-xl hover:border-black/30 hover:-translate-y-0.5 transition-[box-shadow,border-color,transform] duration-300 flex flex-col justify-between gap-5 relative overflow-hidden h-full"
               >
@@ -97,7 +97,7 @@ export const Cases: React.FC = () => {
         </div>
 
         {/* 4-step workflow — Minimalist Black background banner */}
-        <ScrollReveal animation="scale-up" delay={200}>
+        <ScrollReveal animation="scale-up">
           <div
             className="p-6 sm:p-12 rounded-[24px] sm:rounded-[32px] text-white space-y-10 relative overflow-hidden shadow-2xl bg-[#0A0A0A] border border-neutral-800"
             style={{ background: 'linear-gradient(135deg, #18181B 0%, #000000 100%)' }}

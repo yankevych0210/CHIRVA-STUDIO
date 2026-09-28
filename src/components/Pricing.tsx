@@ -9,7 +9,7 @@ export const Pricing: React.FC = () => {
       <div className="container-custom">
 
         {/* Header */}
-        <ScrollReveal animation="fade-up" delay={50}>
+        <ScrollReveal animation="fade-up">
           <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16 space-y-4">
             <div className="section-eyebrow justify-center">
               <span className="section-eyebrow-line" />
@@ -34,7 +34,7 @@ export const Pricing: React.FC = () => {
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-stretch">
           {PRICING_PLANS.map((plan, idx) => (
-            <ScrollReveal key={plan.id} animation="fade-up" delay={150 + idx * 100} className="h-full">
+            <ScrollReveal key={plan.id} animation="fade-up" delay={0} delayLg={idx * 90} className="h-full">
               <div
                 className={`relative border transition-[box-shadow,border-color,transform] duration-300 flex flex-col justify-between h-full ${
                   plan.isPopular
@@ -117,7 +117,7 @@ export const Pricing: React.FC = () => {
         </div>
 
         {/* Note */}
-        <ScrollReveal animation="fade-up" delay={450}>
+        <ScrollReveal animation="fade-up">
           <div className="mt-10 p-5 rounded-2xl bg-[#FAFAFA] border border-[#EBEBEB] max-w-2xl mx-auto flex items-start sm:items-center gap-4 text-[13px] leading-relaxed text-[#6B6B6B]">
             <div aria-hidden="true" className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center shrink-0">
               <InstagramIcon className="w-4 h-4 text-white" />

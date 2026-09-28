@@ -294,20 +294,27 @@ img, video {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ═══════════════════════════════════════════════
-   SCROLL REVEAL
+   SCROLL REVEAL  (engine: src/components/ScrollReveal.tsx)
    Hidden state only applies when JS is running (html.js),
    so crawlers and no-JS visitors always see the content.
 ═══════════════════════════════════════════════ */
-.reveal {
+.reveal,
+.reveal-onload {
   --reveal-y: 32px;
   --reveal-duration: 580ms;
-  --reveal-wait: min(calc(var(--reveal-delay, 0ms) * 0.5), 80ms);
+  --reveal-wait: min(var(--reveal-delay, 0ms), 240ms);
 }
 @media (min-width: 768px) {
-  .reveal {
+  .reveal,
+  .reveal-onload {
     --reveal-y: 44px;
     --reveal-duration: 660ms;
-    --reveal-wait: min(var(--reveal-delay, 0ms), 140ms);
+  }
+}
+@media (min-width: 1024px) {
+  .reveal,
+  .reveal-onload {
+    --reveal-wait: min(var(--reveal-delay-lg, var(--reveal-delay, 0ms)), 240ms);
   }
 }
 
@@ -321,7 +328,6 @@ img, video {
 .js .reveal:not(.is-visible) {
   opacity: 0;
   transform: translate3d(0, var(--reveal-y), 0);
-  will-change: opacity, transform;
 }
 .js .reveal[data-reveal='fade-in']:not(.is-visible) {
   transform: none;
@@ -341,10 +347,42 @@ img, video {
   }
 }
 
-/* Fast scroll: snappy, no stagger, so content never lags behind the finger */
+/* Entered the view mid-flick: quick fade in place — no sliding under the finger */
+.js .reveal.reveal-fast {
+  transition: opacity 220ms ease-out, transform 0s;
+}
+
+/* Revealed off-screen (flick look-ahead) or already scrolled past: no motion at all */
 .js .reveal.reveal-instant {
-  --reveal-duration: 200ms;
-  --reveal-wait: 0ms;
+  transition: none;
+}
+
+/* Above-the-fold entrance on first paint — pure CSS, doesn't wait for JS */
+.reveal-onload {
+  --reveal-duration: 760ms;
+  animation: reveal-rise var(--reveal-duration) var(--ease-out-expo) var(--reveal-wait) both;
+}
+@media (min-width: 768px) {
+  .reveal-onload { --reveal-duration: 860ms; }
+}
+.reveal-onload[data-reveal='scale-up'] {
+  animation-name: reveal-rise-scale;
+}
+.reveal-onload[data-reveal='fade-in'] {
+  animation-name: reveal-fade;
+}
+
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translate3d(0, var(--reveal-y), 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-rise-scale {
+  from { opacity: 0; transform: scale(0.95) translate3d(0, 24px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* ─── Reduced motion ─────────────────────────── */
@@ -358,5 +396,8 @@ img, video {
   .js .reveal:not(.is-visible) {
     opacity: 1;
     transform: none;
+  }
+  .reveal-onload {
+    animation: none;
   }
 }

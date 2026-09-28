@@ -19,7 +19,7 @@ export const InstagramCTA: React.FC = () => {
       <div aria-hidden="true" className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom relative z-10">
-        <ScrollReveal animation="scale-up" delay={100}>
+        <ScrollReveal animation="scale-up">
           <div className="max-w-3xl mx-auto text-center space-y-8">
 
             {/* Instagram icon large */}

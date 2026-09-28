@@ -38,7 +38,7 @@ export const About: React.FC = () => {
 
           {/* Left: Photo */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <ScrollReveal animation="slide-right" delay={100}>
+            <ScrollReveal animation="slide-right">
               <div className="relative max-w-[400px] mx-auto lg:max-w-none">
                 <div className="w-full aspect-[4/5] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-black/10 bg-[#F5F5F5] group">
                   <Photo
@@ -79,7 +79,7 @@ export const About: React.FC = () => {
 
           {/* Right: Text */}
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-8">
-            <ScrollReveal animation="fade-up" delay={150}>
+            <ScrollReveal animation="fade-up">
               <div className="space-y-3">
                 <div className="section-eyebrow">
                   <span className="section-eyebrow-line" />
@@ -97,7 +97,7 @@ export const About: React.FC = () => {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal animation="fade-up" delay={250}>
+            <ScrollReveal animation="fade-up" delay={80}>
               <div className="space-y-4 text-[15px] sm:text-base text-[#52525B] leading-relaxed">
                 <p>
                   Я — контент-мейкерка та візуальна стратегиня. Допомагаю брендам одягу, косметики, lifestyle-проєктам та закладам виходити на новий рівень сприйняття через сучасний фото та відеоконтент.
@@ -110,7 +110,7 @@ export const About: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
               {pillars.map((item, idx) => (
-                <ScrollReveal key={item.number} animation="fade-up" delay={300 + idx * 100} className="h-full">
+                <ScrollReveal key={item.number} animation="fade-up" delay={0} delayLg={(idx % 2) * 100} className="h-full">
                   <div
                     className="h-full p-5 sm:p-6 rounded-2xl bg-white border border-[#EBEBEB] shadow-sm space-y-3 hover:border-black/30 hover:shadow-xl hover:-translate-y-0.5 transition-[border-color,box-shadow,transform] duration-300 group"
                   >
