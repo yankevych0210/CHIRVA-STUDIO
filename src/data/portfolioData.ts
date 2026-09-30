@@ -76,7 +76,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     categoryLabel: 'Fashion',
     image: 'work-trench',
     video: 'work-trench',
-    duration: 'PT31S',
+    duration: 'PT62S',
     orientation: 'vertical',
     description: 'Street-style Reels: бежевий тренч, старовинні фасади та сміливі ракурси знизу.',
     deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
