@@ -15,7 +15,7 @@ export const Cases: React.FC = () => {
               <span className="section-eyebrow-line" />
               <span className="section-eyebrow-num">04</span>
               <span className="section-eyebrow-sep">/</span>
-              <span className="section-eyebrow-text">Формати роботи</span>
+              <span className="section-eyebrow-text">Процес роботи</span>
             </div>
             <h2 id="cases-title" className="font-serif text-[2rem] sm:text-5xl leading-tight text-[#1A1A1A]">
               Як будується <span className="hidden sm:inline"><br /></span>

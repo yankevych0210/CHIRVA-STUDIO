@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             <BrandLogo isDarkBackground={true} />
 
             <p className="text-sm text-white/60 max-w-xs leading-relaxed">
-              Контент-мейкерка & візуальна стратегиня. Естетичний фото та відеоконтент для брендів, що формує емоційний зв'язок з аудиторією.
+              Контент-мейкерка. Естетичні Reels, fashion та lifestyle зйомки, відео з подій — для брендів і людей.
             </p>
 
             <div className="text-xs text-white/50 font-medium uppercase tracking-wider flex items-center gap-1.5">
@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
                 { href: '#about',     label: 'Про мене' },
                 { href: '#services',  label: 'Послуги' },
                 { href: '#portfolio', label: 'Портфоліо' },
-                { href: '#cases',     label: 'Формати співпраці' },
+                { href: '#cases',     label: 'Процес роботи' },
                 { href: '#pricing',   label: 'Прайс' },
               ].map(link => (
                 <li key={link.href}>

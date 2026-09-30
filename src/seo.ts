@@ -4,9 +4,9 @@ import { CREATOR_INFO, SERVICES, PORTFOLIO_ITEMS } from './data/portfolioData';
 // Injected into <head> at build time by scripts/prerender.mjs.
 
 export const SEO = {
-  title: 'Женя Чирва — контент-мейкерка: Reels, UGC та фото для брендів',
+  title: 'Женя Чирва — контент-мейкерка: Reels, fashion та lifestyle зйомки',
   description:
-    'Естетичні Reels, UGC-відео, предметна та lifestyle фотозйомка для брендів одягу, косметики й закладів. Кременчук та онлайн по всьому світу.',
+    'Естетичні Reels, fashion та lifestyle зйомки, відео з весіль і подій. Контент-мейкерка Женя Чирва, Кременчук.',
   ogImage: '/og-image.jpg',
   ogImageAlt: 'The Video by Evhenia Chirva — Reels, UGC та фото, які закохують у бренд',
   locale: 'uk_UA',
@@ -27,8 +27,8 @@ function structuredData(siteUrl: string) {
     '@id': id('person'),
     name: CREATOR_INFO.name,
     alternateName: [CREATOR_INFO.nameLatin, 'Zhenya Chirva', `@${CREATOR_INFO.instagramHandle}`],
-    jobTitle: 'Content Creator & Visual Strategist',
-    knowsAbout: ['Reels', 'UGC', 'Content creation', 'Product photography', 'Lifestyle photography'],
+    jobTitle: 'Content Creator',
+    knowsAbout: ['Reels', 'UGC', 'Content creation', 'Fashion video', 'Lifestyle video', 'Event video'],
     sameAs: [CREATOR_INFO.instagramUrl],
     ...(siteUrl && { image: `${siteUrl}/images/hero-960.webp`, url }),
     address: {

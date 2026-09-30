@@ -109,7 +109,7 @@ export const Pricing: React.FC = () => {
                     }`}
                   >
                     <InstagramIcon className={`w-4 h-4 shrink-0 ${plan.isPopular ? 'text-black' : ''}`} aria-hidden="true" />
-                    <span>Запитати прайс у Direct</span>
+                    <span>Замовити у Direct</span>
                     <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   </a>
                 </div>

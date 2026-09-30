@@ -1,4 +1,4 @@
-import { Sparkles, Heart, ShieldCheck, Zap, Star } from 'lucide-react';
+import { Sparkles, Heart, ShieldCheck, Zap } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { Photo } from './Photo';
 import { photoUrl } from '../lib/photos';
@@ -51,16 +51,6 @@ export const About: React.FC = () => {
 
                 {/* Quote Card */}
                 <figure className="relative -mt-10 mx-3 sm:mx-0 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 sm:w-4/5 p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-black/10 shadow-xl space-y-3">
-                  <div className="flex gap-1 items-center" aria-label="Рейтинг 5 з 5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        aria-hidden="true"
-                        className="w-4 h-4 fill-black text-black"
-                      />
-                    ))}
-                    <span aria-hidden="true" className="ml-1.5 text-xs font-bold text-[#1A1A1A]">5.0</span>
-                  </div>
                   <blockquote className="font-serif italic text-[1.05rem] text-[#1A1A1A] leading-snug">
                     «Моя мета — зробити так, щоб Reels відображав ваші найяскравіші якості, як бізнес, так і людину.»
                   </blockquote>
@@ -100,7 +90,7 @@ export const About: React.FC = () => {
             <ScrollReveal animation="fade-up" delay={80}>
               <div className="space-y-4 text-[15px] sm:text-base text-[#52525B] leading-relaxed">
                 <p>
-                  Я — контент-мейкерка та візуальна стратегиня. Допомагаю брендам одягу, косметики, lifestyle-проєктам та закладам виходити на новий рівень сприйняття через сучасний фото та відеоконтент.
+                  Я — контент-мейкерка. Знімаю fashion та lifestyle Reels, особисті зйомки й події — від прогулянки містом до весілля чи хрестин.
                 </p>
                 <p>
                   У світі, де увагу користувача потрібно завоювати за 2 секунди, стандартні макети більше не працюють. Я створюю живий, естетичний та розроблений під задачі бізнесу контент, який викликає щирий інтерес і бажання купити.

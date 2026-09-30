@@ -66,7 +66,7 @@ export const InstagramFeed: React.FC = () => {
                   <span aria-hidden="true" className="w-2 h-2 rounded-full bg-emerald-400" />
                 </div>
                 <div className="text-xs text-[#6B6B6B] truncate">
-                  Женя Чирва · Content Creator & Visual Strategist
+                  Женя Чирва · Content Creator
                 </div>
               </div>
             </div>

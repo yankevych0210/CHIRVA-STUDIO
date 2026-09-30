@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { id: 'about', label: 'Про мене' },
   { id: 'services', label: 'Послуги' },
   { id: 'portfolio', label: 'Портфоліо' },
-  { id: 'cases', label: 'Формати' },
+  { id: 'cases', label: 'Процес' },
   { id: 'pricing', label: 'Прайс' },
 ];
 

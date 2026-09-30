@@ -54,7 +54,7 @@ export const Portfolio: React.FC = () => {
               </h2>
             </div>
             <p className="text-sm text-[#6B6B6B] max-w-md leading-relaxed">
-              Естетичний візуал для брендів одягу, косметики, прикрас та закладів.
+              Fashion та lifestyle Reels, особисті зйомки й відео з подій — живі, атмосферні та з характером.
             </p>
           </div>
         </ScrollReveal>

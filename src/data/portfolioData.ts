@@ -10,19 +10,14 @@ export const CREATOR_INFO = {
   name: 'Женя Чирва',
   nameLatin: 'Evhenia Chirva',
   brandName: 'The Video by Evhenia Chirva',
-  role: 'Content Creator & Visual Strategist',
+  role: 'Content Creator',
   location: 'Кременчук, Україна • Global Remote',
   instagramHandle: 'chirva.cm',
   instagramUrl: 'https://www.instagram.com/chirva.cm/',
   telegramUrl: 'https://t.me/chirva_cm',
   email: 'chirva.content@gmail.com',
   tagline: 'КОНТЕНТ, ЯКИЙ ЕСТЕЦИЗУЄ БРЕНД ТА ПРОДАЄ БЕЗ НАВ\'ЯЗУВАННЯ',
-  heroDescription: 'Створюю естетичні Reels, lifestyle, особисті/fashion зйомки, які прагнуть виглядати преміально і мати високу залученість.',
-  heroBadges: [
-    { value: '150+', label: 'Створених Reels' },
-    { value: '98%', label: 'Задоволених брендів' },
-    { value: '2.5M+', label: 'Сумарних переглядів' }
-  ]
+  heroDescription: 'Створюю естетичні Reels, lifestyle, особисті/fashion зйомки, які прагнуть виглядати преміально і мати високу залученість.'
 };
 
 export const SERVICES: ServiceItem[] = [

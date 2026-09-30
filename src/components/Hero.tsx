@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <span aria-hidden="true" className="hidden xs:block w-8 h-[1px] bg-black/30 shrink-0" />
                   <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#6B6B6B]">
-                    Content Creator · Visual Strategist
+                    Content Creator · Reels
                   </p>
                 </div>
                 <h1 id="hero-title" className="font-serif text-[2.15rem] xs:text-[2.4rem] sm:text-5xl lg:text-6xl font-normal leading-[1.12] sm:leading-[1.08] tracking-tight text-[#1A1A1A]">
@@ -72,21 +72,6 @@ export const Hero: React.FC = () => {
               </div>
             </ScrollReveal>
 
-            {/* Stats */}
-            <ScrollReveal onLoad animation="fade-up" delay={240} className="w-full">
-              <dl className="w-full pt-6 border-t border-[#F0F0F0] grid grid-cols-3 gap-3 sm:gap-6">
-                {CREATOR_INFO.heroBadges.map((badge) => (
-                  <div key={badge.label} className="flex flex-col-reverse gap-1">
-                    <dt className="text-[10px] sm:text-[11px] text-[#6B6B6B] font-medium uppercase tracking-wider leading-tight">
-                      {badge.label}
-                    </dt>
-                    <dd className="font-serif text-2xl sm:text-3xl font-semibold text-black lining-nums">
-                      {badge.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </ScrollReveal>
           </div>
 
           {/* Right: Instagram Profile Card */}
