@@ -7,8 +7,8 @@ export const SEO = {
   title: 'Женя Чирва — контент-мейкерка: Reels, fashion та lifestyle зйомки',
   description:
     'Естетичні Reels, fashion та lifestyle зйомки, відео з весіль і подій. Контент-мейкерка Женя Чирва, Кременчук.',
-  ogImage: '/og-image.jpg',
-  ogImageAlt: 'The Video by Evhenia Chirva — Reels, UGC та фото, які закохують у бренд',
+  ogImage: '/og-image.jpg?v=2', // bump ?v= when the image changes — resets social-network caches
+  ogImageAlt: 'The Video by Evhenia Chirva — fashion, lifestyle та події у Reels з характером',
   locale: 'uk_UA',
 };
 
