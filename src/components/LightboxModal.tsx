@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { X, ArrowUpRight, Eye, Check } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { X, ArrowUpRight, Eye, Check, Volume2 } from 'lucide-react';
 import type { PortfolioItem } from '../types';
 import { CREATOR_INFO } from '../data/portfolioData';
 import { lockScroll } from '../lib/scrollLock';
@@ -16,6 +16,31 @@ const FOCUSABLE = 'a[href], button:not([disabled]), video[controls], [tabindex]:
 export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [soundBlocked, setSoundBlocked] = useState(false);
+
+  // The tap on a card counts as a user gesture, so browsers allow playing with sound.
+  // If one still refuses (e.g. iOS Low Power Mode), fall back to muted playback and
+  // offer a one-tap "turn sound on" button.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!item?.video || !video) return;
+    setSoundBlocked(false);
+    video.muted = false;
+    video.play().catch(() => {
+      video.muted = true;
+      setSoundBlocked(true);
+      video.play().catch(() => {});
+    });
+  }, [item]);
+
+  const enableSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    video.play().catch(() => {});
+    setSoundBlocked(false);
+  };
 
   // Lock page scroll, Escape to close, keep Tab focus inside, restore focus on close
   useEffect(() => {
@@ -115,13 +140,13 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
             />
           )}
           {item.video ? (
-            // Starts muted (browsers block autoplay with sound); native controls
-            // give sound, pause, seeking and fullscreen on every platform.
+            // Started with sound from the effect above; native controls give
+            // pause, volume, seeking and fullscreen on every platform.
             <video
               key={item.id}
+              ref={videoRef}
               poster={photoUrl(item.image)}
-              autoPlay
-              muted
+              onVolumeChange={(e) => !e.currentTarget.muted && setSoundBlocked(false)}
               loop
               playsInline
               controls
@@ -141,6 +166,18 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
               loading="eager"
               className="w-full h-full object-cover"
             />
+          )}
+
+          {/* Shown only if the browser refused to start with sound */}
+          {item.video && soundBlocked && (
+            <button
+              type="button"
+              onClick={enableSound}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full bg-white/95 text-[#141312] text-[13px] font-semibold shadow-xl backdrop-blur-sm active:scale-95 transition-transform animate-fade-in"
+            >
+              <Volume2 className="w-4 h-4" aria-hidden="true" />
+              <span>Увімкнути звук</span>
+            </button>
           )}
 
           {/* Metric badge overlay */}
