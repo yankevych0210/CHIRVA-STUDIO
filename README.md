@@ -69,6 +69,8 @@ SEO-заголовок та опис — `src/seo.ts` та `index.html`.
 1. Покладіть оригінал (PNG/JPG) у `assets/originals/`, наприклад `assets/originals/newwork.jpg`.
 2. Запустіть `npm run images` (потрібен `cwebp`: `brew install webp`) — з'являться `public/images/newwork-480.webp` та `-960.webp`.
 3. Додайте назву в `PhotoName` та `PHOTO_SIZE` у `src/lib/photos.ts`.
+   Фото з камери інколи зберігаються «лежачи» з позначкою повороту в EXIF, яку `cwebp` ігнорує —
+   поверніть файл перед конвертацією (`sips -r 90 файл.jpg`).
 
 ### Відео у портфоліо
 
@@ -77,7 +79,8 @@ SEO-заголовок та опис — `src/seo.ts` та `index.html`.
 2. `npm run videos work-new` (потрібен `ffmpeg`: `brew install ffmpeg`), потім `npm run images`. Скрипт створює:
    - `public/videos/work-new.hevc.mp4` — H.265 1080p (Safari/iOS, Chrome, Edge);
    - `public/videos/work-new.mp4` — H.264 1080p, запасний формат для решти браузерів;
-   - постер-кадр → `public/images/work-new-480/960.webp`.
+   - постер-кадр → `public/images/work-new-480/960.webp` (якщо своєї обложки `assets/originals/work-new.jpg` ще немає;
+     свою обложку скрипт не перезаписує).
    Якість задається CRF 23 (VMAF ≈ 95–96 — різниці з оригіналом не видно), файли на 85–90% легші.
 3. Додайте роботу в `PORTFOLIO_ITEMS` (`src/data/portfolioData.ts`): `video: 'work-new'`, `image: 'work-new'`,
    `orientation: 'vertical' | 'horizontal'`, `duration` — і назву в `src/lib/photos.ts`.

@@ -13,6 +13,8 @@ export default {
     extend: {
       screens: {
         xs: '380px',
+        // Phone turned sideways: little height, lots of width
+        short: { raw: '(orientation: landscape) and (max-height: 500px)' },
       },
       fontFamily: {
         serif: ['var(--font-serif)'],

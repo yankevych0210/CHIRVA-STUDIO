@@ -1,6 +1,6 @@
 import type { PhotoName } from './lib/photos';
 
-export type PortfolioCategory = 'fashion' | 'lifestyle' | 'studio' | 'events';
+export type PortfolioCategory = 'fashion' | 'lifestyle' | 'events';
 
 export interface PortfolioItem {
   id: string;
@@ -9,6 +9,8 @@ export interface PortfolioItem {
   categoryLabel: string;
   /** Card thumbnail / video poster */
   image: PhotoName;
+  /** Focal point of the cover when the card crops it, CSS object-position (default 'center') */
+  imagePosition?: string;
   /**
    * Base name of a video in public/videos/ (made by `npm run videos`):
    * plays <name>.hevc.mp4 with <name>.mp4 (H.264) as fallback in the lightbox.

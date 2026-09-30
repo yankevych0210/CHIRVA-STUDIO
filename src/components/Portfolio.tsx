@@ -11,13 +11,12 @@ type FilterId = 'all' | PortfolioCategory;
 const CATEGORY_LABELS: Record<PortfolioCategory, string> = {
   fashion: 'Fashion',
   lifestyle: 'Lifestyle',
-  studio: 'Студія',
-  events: 'Події',
+  events: 'Events',
 };
 
 // Only categories that actually have works get a tab — no empty filters
 const FILTER_TABS: { id: FilterId; label: string }[] = [
-  { id: 'all', label: 'Всі роботи' },
+  { id: 'all', label: 'All' },
   ...(Object.keys(CATEGORY_LABELS) as PortfolioCategory[])
     .filter((c) => PORTFOLIO_ITEMS.some((item) => item.category === c))
     .map((c) => ({ id: c, label: CATEGORY_LABELS[c] })),
@@ -106,7 +105,8 @@ export const Portfolio: React.FC = () => {
                       name={item.image}
                       sizes="(min-width: 1024px) 380px, 50vw"
                       alt=""
-                      className="w-full h-full object-cover object-center transition-transform duration-600 ease-out-expo group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-600 ease-out-expo group-hover:scale-105"
+                      style={{ objectPosition: item.imagePosition ?? 'center' }}
                     />
 
                     {/* Hover overlay */}

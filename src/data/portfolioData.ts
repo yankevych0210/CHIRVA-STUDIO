@@ -30,7 +30,6 @@ export const SERVICES: ServiceItem[] = [
     id: 'reels',
     number: '01',
     title: 'Editorial Reels & Short Video',
-    subtitle: 'Вірусний контент з естетичною подачею',
     description: 'Динамічні, атмосферні та розроблені під алгоритми ролики 9:16. Викликають емоцію, утримують увагу від першої секунди та закохують у ваш продукт.',
     deliverables: [
       'Розробка сценаріїв та розкадровка',
@@ -45,7 +44,6 @@ export const SERVICES: ServiceItem[] = [
     id: 'ugc',
     number: '02',
     title: 'UGC Content (User Generated)',
-    subtitle: 'Живі огляди та тестування від першої особи',
     description: 'Щирий контент без відчуття прямої реклами. Клієнти бачать реальну людину, яка користується продуктом у своєму житті, що гарантує високий рівень довіри.',
     deliverables: [
       'Автентична розпаковка (Unboxing)',
@@ -73,74 +71,75 @@ export const SERVICES: ServiceItem[] = [
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 'work-trench',
-    title: 'Trench Coat Story',
+    title: 'City Trench',
     category: 'fashion',
     categoryLabel: 'Fashion',
     image: 'work-trench',
     video: 'work-trench',
     duration: 'PT31S',
     orientation: 'vertical',
-    description: 'Fashion-ролик у міському просторі: сміливі нижні ракурси, рух тренча та волосся, живе денне світло.',
+    description: 'Street-style Reels: бежевий тренч, старовинні фасади та сміливі ракурси знизу.',
     deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
     id: 'work-leather',
-    title: 'Leather Mood',
+    title: 'Black Leather',
     category: 'fashion',
     categoryLabel: 'Fashion',
     image: 'work-leather',
+    imagePosition: '50% 8%',
     video: 'work-leather',
     duration: 'PT38S',
     orientation: 'vertical',
-    description: 'Атмосферний fashion Reels у темній палітрі: місто, авто та осінній настрій.',
+    description: 'Монохромний fashion-ролик: шкіряна куртка, міські вулиці та стриманий, але дуже характерний образ.',
     deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
     id: 'work-studio',
-    title: 'Studio Session',
-    category: 'studio',
-    categoryLabel: 'Студійна зйомка',
+    title: 'Soft Studio',
+    category: 'fashion',
+    categoryLabel: 'Fashion',
     image: 'work-studio',
     video: 'work-studio',
     duration: 'PT55S',
     orientation: 'vertical',
-    description: 'Бекстейдж студійної фотосесії: робота зі світлом, позування та живі моменти між кадрами.',
+    description: 'Студійна зйомка у світлому просторі: мʼяке світло, чорно-білі кадри та живі емоції між позами.',
     deliverables: ['Reels 9:16', 'Монтаж та колірокорекція']
   },
   {
     id: 'work-enduro',
-    title: 'Enduro Forest Ride',
+    title: 'Enduro Mood',
     category: 'lifestyle',
     categoryLabel: 'Lifestyle',
     image: 'work-enduro',
     video: 'work-enduro',
     duration: 'PT24S',
     orientation: 'vertical',
-    description: 'Динамічний lifestyle-ролик про ендуро: ліс, рух і характер у кожному кадрі.',
+    description: 'Динамічний Reels для райдера: сосновий ліс, ендуро-мотоцикл і рух, у якому відчувається адреналін.',
     deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
     id: 'work-picnic',
-    title: 'Summer Picnic',
+    title: 'Sunny Picnic',
     category: 'events',
-    categoryLabel: 'Події',
+    categoryLabel: 'Events',
     image: 'work-picnic',
     video: 'work-picnic',
     duration: 'PT49S',
     orientation: 'horizontal',
-    description: 'Теплий літній пікнік з подругами: ніжні емоції, сонце та атмосфера свята.',
+    description: 'Літній пікнік з подругами: сонце, келихи, сміх і атмосфера свята, знята легко та ніжно.',
     deliverables: ['Відео 16:9', 'Монтаж та колірокорекція']
   },
   {
     id: 'work-christening',
-    title: 'Таїнство Хрещення',
+    title: 'Christening Day',
     category: 'events',
-    categoryLabel: 'Події',
+    categoryLabel: 'Events',
     image: 'work-christening',
     video: 'work-christening',
     duration: 'PT39S',
     orientation: 'horizontal',
-    description: 'Відео зі святкового дня хрещення: головні моменти таїнства та емоції рідних.',
+    description: 'Хрещення малюка: найзворушливіші моменти таїнства, світло свічок та емоції рідних.',
     deliverables: ['Відео 16:9', 'Монтаж та колірокорекція']
   }
 ];
@@ -217,46 +216,48 @@ export const COOPERATION_STEPS: CooperationStep[] = [
   }
 ];
 
+// Covers of the latest 6 posts on @chirva.cm (cropped from the profile grid).
+// Replace with a live feed once the Instagram connection is set up.
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     id: 'ig-1',
-    image: 'bts-1',
-    caption: 'Бекстейдж: зйомка fashion-контенту на вулиці',
+    image: 'ig-1',
+    caption: 'Fashion-зйомка: тренч і ретро-велосипед',
     type: 'photo',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-2',
-    image: 'work-trench',
-    caption: 'Trench Coat Story — fashion Reels',
+    image: 'ig-2',
+    caption: 'Студійна чорно-біла зйомка',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-3',
-    image: 'work-leather',
-    caption: 'Leather Mood — fashion Reels',
+    image: 'ig-3',
+    caption: 'Fashion Reels: тренч біля кав’ярні',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-4',
-    image: 'bts-2',
-    caption: 'Бекстейдж: зйомка Reels на телефон',
-    type: 'photo',
+    image: 'ig-4',
+    caption: 'Fashion Reels: місто та шкіряна куртка',
+    type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-5',
-    image: 'work-studio',
-    caption: 'Studio Session — бекстейдж фотосесії',
+    image: 'ig-5',
+    caption: 'Lifestyle Reels: ендуро в лісі',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-6',
-    image: 'work-enduro',
-    caption: 'Enduro Forest Ride — lifestyle Reels',
+    image: 'ig-6',
+    caption: 'Reels з події: вогні та феєрверки',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   }

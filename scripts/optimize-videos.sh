@@ -2,7 +2,7 @@
 # Web-optimized versions of every video in assets/originals/video/ (not in git):
 #   public/videos/<name>.hevc.mp4  — H.265 1080p: Safari/iOS, Chrome, Edge (smaller at equal quality)
 #   public/videos/<name>.mp4       — H.264 1080p: universal fallback (Firefox, older devices)
-#   assets/originals/<name>.jpg    — poster frame → `npm run images` turns it into WebP
+#   assets/originals/<name>.jpg    — poster frame (only if no cover exists yet) → `npm run images`
 # Both: AAC 128k stereo, +faststart (playback starts before the file is fully loaded).
 # 50/60 fps sources are halved exactly (59.94 → 29.97), so motion stays even.
 # Quality: capped CRF — constant visual quality, with a bitrate ceiling so very detailed
@@ -57,8 +57,12 @@ for src in assets/originals/video/*.{mov,MOV,mp4,MP4}; do
     -c:v libx264 -preset slow -crf 23 -maxrate 7500k -bufsize 15000k -profile:v high -level 4.2 \
     "${common[@]}" "public/videos/$name.mp4"
 
-  "$FFMPEG" -hide_banner -loglevel error -y -ss "$(poster_at "$name")" -i "$src" \
-    -frames:v 1 -vf "$(fit 1920)" -q:v 2 "assets/originals/$name.jpg"
+  # Poster: keep a cover that was picked by hand (FORCE_POSTER=1 to re-extract from the video)
+  poster="assets/originals/$name.jpg"
+  if [ ! -e "$poster" ] || [ "${FORCE_POSTER:-0}" = 1 ]; then
+    "$FFMPEG" -hide_banner -loglevel error -y -ss "$(poster_at "$name")" -i "$src" \
+      -frames:v 1 -vf "$(fit 1920)" -q:v 2 "$poster"
+  fi
 
   echo "✓ $name  $(du -h "public/videos/$name.hevc.mp4" | cut -f1) (hevc)  $(du -h "public/videos/$name.mp4" | cut -f1) (h264)"
 done
