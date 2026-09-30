@@ -42,9 +42,9 @@ export const About: React.FC = () => {
               <div className="relative max-w-[400px] mx-auto lg:max-w-none">
                 <div className="w-full aspect-[4/5] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-black/10 bg-[#F5F5F5] group">
                   <Photo
-                    name="about"
+                    name="portrait"
                     sizes="(min-width: 1024px) 420px, (min-width: 640px) 400px, calc(100vw - 2.5rem)"
-                    alt="Женя Чирва з камерою під час зйомки в студії"
+                    alt="Женя Чирва — fashion-зйомка на вулиці міста"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                 </div>
@@ -62,7 +62,7 @@ export const About: React.FC = () => {
                     <span aria-hidden="true" className="ml-1.5 text-xs font-bold text-[#1A1A1A]">5.0</span>
                   </div>
                   <blockquote className="font-serif italic text-[1.05rem] text-[#1A1A1A] leading-snug">
-                    «Моя мета — зробити так, щоб ваш бренд виглядав як мрія у стрічці кожного клієнта.»
+                    «Моя мета — зробити так, щоб Reels відображав ваші найяскравіші якості, як бізнес, так і людину.»
                   </blockquote>
                   <figcaption className="flex items-center gap-2.5">
                     <div className="ig-story-ring w-8 h-8 shrink-0">

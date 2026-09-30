@@ -1,4 +1,4 @@
-import { Film, Camera, Sparkles, Compass, Check, ArrowUpRight } from 'lucide-react';
+import { Film, Camera, Sparkles, Compass, Heart, Check, ArrowUpRight } from 'lucide-react';
 import { SERVICES, CREATOR_INFO } from '../data/portfolioData';
 import { InstagramIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
@@ -10,6 +10,7 @@ export const Services: React.FC = () => {
       case 'Camera':   return <Camera className="w-5 h-5" />;
       case 'Sparkles': return <Sparkles className="w-5 h-5" />;
       case 'Compass':  return <Compass className="w-5 h-5" />;
+      case 'Heart':    return <Heart className="w-5 h-5" />;
       default:         return <Sparkles className="w-5 h-5" />;
     }
   };
@@ -43,9 +44,9 @@ export const Services: React.FC = () => {
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {SERVICES.map((service, idx) => (
-            <ScrollReveal key={service.id} animation="fade-up" delay={0} delayLg={(idx % 2) * 110} className="h-full">
+            <ScrollReveal key={service.id} animation="fade-up" delay={0} delayLg={(idx % 3) * 110} className="h-full">
               <div
                 className={`group p-6 sm:p-9 rounded-[20px] sm:rounded-[28px] border transition-[box-shadow,border-color,transform] duration-400 flex flex-col justify-between relative overflow-hidden h-full ${
                   service.isHighlighted
@@ -89,11 +90,13 @@ export const Services: React.FC = () => {
                     }`}>
                       {service.title}
                     </h3>
-                    <p className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider leading-snug ${
-                      service.isHighlighted ? 'text-white/70' : 'text-[#6B6B6B]'
-                    }`}>
-                      {service.subtitle}
-                    </p>
+                    {service.subtitle && (
+                      <p className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider leading-snug ${
+                        service.isHighlighted ? 'text-white/70' : 'text-[#6B6B6B]'
+                      }`}>
+                        {service.subtitle}
+                      </p>
+                    )}
                   </div>
 
                   {/* Description */}

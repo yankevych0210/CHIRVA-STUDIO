@@ -66,12 +66,14 @@ export const Pricing: React.FC = () => {
 
                   {/* Price */}
                   <div className={`py-4 border-y space-y-1 ${plan.isPopular ? 'border-white/20' : 'border-[#F0F0F0]'}`}>
-                    <div className={`font-serif text-2xl font-normal ${plan.isPopular ? 'text-white' : 'text-[#1A1A1A]'}`}>
+                    <div className={`font-serif text-2xl font-normal lining-nums ${plan.isPopular ? 'text-white' : 'text-[#1A1A1A]'}`}>
                       {plan.priceNote}
                     </div>
-                    <div className={`text-[11px] font-medium uppercase tracking-wider ${plan.isPopular ? 'text-white/60' : 'text-[#737373]'}`}>
-                      Персональне КП у Direct
-                    </div>
+                    {plan.priceCaption !== '' && (
+                      <div className={`text-[11px] font-medium uppercase tracking-wider ${plan.isPopular ? 'text-white/60' : 'text-[#737373]'}`}>
+                        {plan.priceCaption ?? 'Персональне КП у Direct'}
+                      </div>
+                    )}
                   </div>
 
                   {/* Features */}

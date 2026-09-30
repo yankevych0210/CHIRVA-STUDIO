@@ -1,33 +1,9 @@
 import { COOPERATION_STEPS, CREATOR_INFO } from '../data/portfolioData';
-import { ArrowUpRight, CheckCircle2, Clapperboard, Smartphone, Sparkles } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
 
 export const Cases: React.FC = () => {
-  const formats = [
-    {
-      title: 'Brand Content Pack',
-      subtitle: 'Місячний візуальний супровід',
-      description: 'Повний цикл створення контенту на місяць: від мудборду до 15 роликів та 30 фотографій у єдиному стилі.',
-      tag: 'Повний супровід',
-      icon: Clapperboard
-    },
-    {
-      title: 'UGC & Reels Bundle',
-      subtitle: 'Серія вірусних роликів під ключ',
-      description: 'Пакет з 5/10 роликів з розкадровками, дикторським озвучуванням та трендовим монтажем для охоплення.',
-      tag: 'Конверсія & Охоплення',
-      icon: Smartphone
-    },
-    {
-      title: 'Content Production Day',
-      subtitle: 'Інтенсивна зйомка на локації',
-      description: 'Одноденний контент-день зі зйомкою декількох образів, продуктів або інтер\'єру для наповнення сітки.',
-      tag: 'Локаційна зйомка',
-      icon: Sparkles
-    }
-  ];
-
   return (
     <section id="cases" aria-labelledby="cases-title" className="py-14 md:py-24 relative bg-[#FAFAFA]">
       <div className="container-custom">
@@ -50,51 +26,6 @@ export const Cases: React.FC = () => {
             </h2>
           </div>
         </ScrollReveal>
-
-        {/* Format Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-10 md:mb-14">
-          {formats.map((fmt, idx) => (
-            <ScrollReveal key={fmt.title} animation="fade-up" delay={0} delayLg={idx * 90} className="h-full">
-              <div
-                className="group p-6 sm:p-7 rounded-[20px] sm:rounded-[24px] bg-white border border-[#EBEBEB] hover:shadow-xl hover:border-black/30 hover:-translate-y-0.5 transition-[box-shadow,border-color,transform] duration-300 flex flex-col justify-between gap-5 relative overflow-hidden h-full"
-              >
-                {/* Black top line on hover */}
-                <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-[3px] bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-
-                <div className="space-y-3">
-                  {/* Icon + tag */}
-                  <div className="flex items-center gap-3">
-                    <div
-                      aria-hidden="true"
-                      className="w-11 h-11 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center shrink-0"
-                    >
-                      <fmt.icon className="w-5 h-5 text-black" />
-                    </div>
-                    <span
-                      className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] px-3 py-1 rounded-full bg-black text-white"
-                    >
-                      {fmt.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif text-xl font-medium text-[#1A1A1A]">{fmt.title}</h3>
-                  <p className="text-[11px] sm:text-xs font-semibold text-[#6B6B6B] uppercase tracking-wider">{fmt.subtitle}</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">{fmt.description}</p>
-                </div>
-
-                <a
-                  href={CREATOR_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary w-full text-sm justify-center"
-                >
-                  <span>Обрати у Direct</span>
-                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                </a>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
 
         {/* 4-step workflow — Minimalist Black background banner */}
         <ScrollReveal animation="scale-up">

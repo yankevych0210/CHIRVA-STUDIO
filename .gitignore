@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source videos (hundreds of MB, over GitHub's 100MB limit) — only the
+# optimized copies in public/videos/ are committed. Keep originals locally.
+assets/originals/video/

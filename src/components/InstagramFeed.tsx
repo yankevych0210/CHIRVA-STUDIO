@@ -1,4 +1,4 @@
-import { Heart, MessageCircle, Play, ArrowUpRight } from 'lucide-react';
+import { Play, ArrowUpRight } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { INSTAGRAM_POSTS, CREATOR_INFO } from '../data/portfolioData';
 import { ScrollReveal } from './ScrollReveal';
@@ -104,16 +104,7 @@ export const InstagramFeed: React.FC = () => {
                 {/* Hover overlay */}
                 <div aria-hidden="true" className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white gap-3"
                   style={{ background: 'rgba(0,0,0,0.5)' }}>
-                  <div className="flex items-center gap-4 text-sm font-bold">
-                    <span className="flex items-center gap-1.5">
-                      <Heart className="w-4 h-4 fill-white" />
-                      {post.likes}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-4 h-4 fill-white" />
-                      {post.comments}
-                    </span>
-                  </div>
+                  <InstagramIcon className="w-7 h-7 text-white" />
                 </div>
 
                 {/* Reel badge */}

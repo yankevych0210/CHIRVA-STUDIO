@@ -17,7 +17,7 @@ export const CREATOR_INFO = {
   telegramUrl: 'https://t.me/chirva_cm',
   email: 'chirva.content@gmail.com',
   tagline: 'КОНТЕНТ, ЯКИЙ ЕСТЕЦИЗУЄ БРЕНД ТА ПРОДАЄ БЕЗ НАВ\'ЯЗУВАННЯ',
-  heroDescription: 'Створюю естетичні Reels, UGC, предметні та lifestyle фото для брендів, які прагнуть виглядати преміально і мати високу залученість.',
+  heroDescription: 'Створюю естетичні Reels, lifestyle, особисті/fashion зйомки, які прагнуть виглядати преміально і мати високу залученість.',
   heroBadges: [
     { value: '150+', label: 'Створених Reels' },
     { value: '98%', label: 'Задоволених брендів' },
@@ -57,109 +57,91 @@ export const SERVICES: ServiceItem[] = [
     iconName: 'Camera'
   },
   {
-    id: 'photo',
+    id: 'wedding',
     number: '03',
-    title: 'Brand Photo Production',
-    subtitle: 'Предметна та lifestyle фотозйомка',
-    description: 'Створення унікального фотоконтенту з вивіреною композицією, грою природного світла та журнальною естетикою для сітки та каталогу.',
+    title: 'Wedding',
+    description: 'Створення унікального контенту, який повністю передає атмосферу пари та їх гостей на весіллі.',
     deliverables: [
-      'Предметна фотозйомка (Flatlay, macro)',
-      'Lifestyle кадри з моделями/в інтер\'єрі',
-      'Колірокорекція та ретуш у єдиному стилі',
-      'Адаптація під розміри сайту та соцмереж'
+      'Консультація з нареченими',
+      'Підбір музики за вайбом пари',
+      'Підбір трендів за вайбом пари'
     ],
-    recommendedFor: 'Лукбуків, маркетплейсів, баннерів та соцмереж',
-    iconName: 'Sparkles'
-  },
-  {
-    id: 'turnkey',
-    number: '04',
-    title: 'Content Package "Turnkey"',
-    subtitle: 'Повний візуальний супровід бренду на місяць',
-    description: 'Комплексне рішення для тих, хто хоче делегувати візуальну концепцію. Готовий контент-пак на місяць вперед без стресу та пошуку окремих фахівців.',
-    deliverables: [
-      'Мудборд та візуальна концепція',
-      '10-15 роликів Reels / Shorts',
-      '20-30 естетичних фотографій',
-      'Готовий контент-план та гайд по викладці'
-    ],
-    recommendedFor: 'Брендів, які прагнуть стабільної присутності та стилю',
-    iconName: 'Compass'
+    iconName: 'Heart'
   }
 ];
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    id: 'work-1',
-    title: 'Aesthetic Skincare Launch',
-    category: 'photo',
-    categoryLabel: 'Предметне фото',
-    image: 'skincare',
-    ratio: 'square',
-    metrics: 'Editorial Visual',
-    brand: 'AURA Botanical',
-    description: 'Предметна зйомка нової лінії органічної сироватки з використанням природних тіней та мінеральних текстур.',
-    deliverables: ['30+ Ретушованих кадрів', 'Контент для сайту', 'Instagram Visual']
+    id: 'work-trench',
+    title: 'Trench Coat Story',
+    category: 'fashion',
+    categoryLabel: 'Fashion',
+    image: 'work-trench',
+    video: 'work-trench',
+    duration: 'PT31S',
+    orientation: 'vertical',
+    description: 'Fashion-ролик у міському просторі: сміливі нижні ракурси, рух тренча та волосся, живе денне світло.',
+    deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
-    id: 'work-2',
-    title: 'Parisian Coat Campaign',
-    category: 'reels',
-    categoryLabel: 'Reels & Відео',
-    image: 'fashion',
-    ratio: 'portrait',
-    metrics: '210K+ Переглядів',
-    brand: 'Maison Capsule',
-    description: 'Атмосферний Reels у журнальному стилі street-style з демонстрацією крою та рухів тканини в міському середовищі.',
-    deliverables: ['Вірусний Reels 9:16', 'Звукове оформлення', 'Кадри для ілюстрацій']
+    id: 'work-leather',
+    title: 'Leather Mood',
+    category: 'fashion',
+    categoryLabel: 'Fashion',
+    image: 'work-leather',
+    video: 'work-leather',
+    duration: 'PT38S',
+    orientation: 'vertical',
+    description: 'Атмосферний fashion Reels у темній палітрі: місто, авто та осінній настрій.',
+    deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
-    id: 'work-3',
-    title: 'Morning Ritual & Matcha',
+    id: 'work-studio',
+    title: 'Studio Session',
+    category: 'studio',
+    categoryLabel: 'Студійна зйомка',
+    image: 'work-studio',
+    video: 'work-studio',
+    duration: 'PT55S',
+    orientation: 'vertical',
+    description: 'Бекстейдж студійної фотосесії: робота зі світлом, позування та живі моменти між кадрами.',
+    deliverables: ['Reels 9:16', 'Монтаж та колірокорекція']
+  },
+  {
+    id: 'work-enduro',
+    title: 'Enduro Forest Ride',
     category: 'lifestyle',
     categoryLabel: 'Lifestyle',
-    image: 'lifestyle',
-    ratio: 'square',
-    metrics: '85K+ Залученість',
-    brand: 'Nude Living',
-    description: 'Естетичний flatlay з естетикою Kinfolk: журнальний розворот, матча та сонячні бліки для бренду домашнього затишку.',
-    deliverables: ['Lifestyle фотопак', 'Сторіс-шаблони']
+    image: 'work-enduro',
+    video: 'work-enduro',
+    duration: 'PT24S',
+    orientation: 'vertical',
+    description: 'Динамічний lifestyle-ролик про ендуро: ліс, рух і характер у кожному кадрі.',
+    deliverables: ['Reels 9:16', 'Зйомка у 4K', 'Монтаж та колірокорекція']
   },
   {
-    id: 'work-4',
-    title: 'Honest Skincare UGC Review',
-    category: 'ugc',
-    categoryLabel: 'UGC Content',
-    image: 'ugc',
-    ratio: 'portrait',
-    metrics: '4.8x ROI в Meta Ads',
-    brand: 'Serene Beauty',
-    description: 'UGC відео з розпаковкою, текстурою та живим враженням від використання сироватки для таргетованої реклами.',
-    deliverables: ['UGC ролик з Voiceover', '3 Рекламні хуки', 'Subtitles on-screen']
+    id: 'work-picnic',
+    title: 'Summer Picnic',
+    category: 'events',
+    categoryLabel: 'Події',
+    image: 'work-picnic',
+    video: 'work-picnic',
+    duration: 'PT49S',
+    orientation: 'horizontal',
+    description: 'Теплий літній пікнік з подругами: ніжні емоції, сонце та атмосфера свята.',
+    deliverables: ['Відео 16:9', 'Монтаж та колірокорекція']
   },
   {
-    id: 'work-5',
-    title: 'Creator Studio BTS',
-    category: 'lifestyle',
-    categoryLabel: 'Lifestyle',
-    image: 'about',
-    ratio: 'portrait',
-    metrics: 'Бекстейдж зйомки',
-    brand: 'Zhenya Chirva Studio',
-    description: 'Кадри з процесу створення контенту у студії з м\'яким естетичним світлом.',
-    deliverables: ['Брендинговий фотопак']
-  },
-  {
-    id: 'work-6',
-    title: 'Minimalist Jewelry Concept',
-    category: 'photo',
-    categoryLabel: 'Предметне фото',
-    image: 'hero',
-    ratio: 'portrait',
-    metrics: '120K+ Reach',
-    brand: 'LUMIERE Fine Jewelry',
-    description: 'Портретна та аксесуарна зйомка з акцентом на мінімалістичні прикраси та природну красу.',
-    deliverables: ['Лукбук кадрів', 'Reels прев\'ю']
+    id: 'work-christening',
+    title: 'Таїнство Хрещення',
+    category: 'events',
+    categoryLabel: 'Події',
+    image: 'work-christening',
+    video: 'work-christening',
+    duration: 'PT39S',
+    orientation: 'horizontal',
+    description: 'Відео зі святкового дня хрещення: головні моменти таїнства та емоції рідних.',
+    deliverables: ['Відео 16:9', 'Монтаж та колірокорекція']
   }
 ];
 
@@ -168,7 +150,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'single',
     title: 'SINGLE CONTENT',
     subtitle: 'Точковий контент для вирішення конкретної задачі',
-    priceNote: 'Вартість розраховується під ТЗ',
+    priceNote: '2000 грн',
+    priceCaption: '',
     features: [
       '1 Естетичний Reels / Shorts або UGC-відео',
       'Розробка сценарію та концепту',
@@ -184,7 +167,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     isPopular: true,
     title: 'REELS PACK',
     subtitle: 'Серія вірусних та естетичних роликів на місяць',
-    priceNote: 'Вартість — за запитом',
+    priceNote: '7000 грн',
+    priceCaption: '',
     features: [
       '8-10 Естетичних роликів Reels / TikTok',
       'Аналіз трендів та аудиторії бренду',
@@ -196,19 +180,17 @@ export const PRICING_PLANS: PricingPlan[] = [
     ctaText: 'Запитувати прайс'
   },
   {
-    id: 'full-brand',
-    title: 'FULL VISUAL BRAND',
-    subtitle: 'Повна візуальна трансформація вашого бренду',
-    priceNote: 'Індивідуальний розрахунок',
+    id: 'wedding',
+    title: 'WEDDING',
+    subtitle: 'Відео для дня вашого кохання',
+    priceNote: '2000 грн',
+    priceCaption: 'за годину',
     features: [
-      '12-15 Естетичних Reels & UGC роликів',
-      '25+ Предметних та lifestyle фото',
-      'Розробка єдиної візуальної сітки (Grid)',
-      'Повний контент-план на 30 днів',
-      'Консультація та гайд по викладці',
-      'Повний контроль концепції під ключ'
+      'Актуальні тренди для Reels',
+      'Ніжні відео для передачі вайбу пари',
+      'Особисті ТЗ від пари'
     ],
-    ctaText: 'Обговорити проєкт'
+    ctaText: 'Обговорити дату'
   }
 ];
 
@@ -238,55 +220,43 @@ export const COOPERATION_STEPS: CooperationStep[] = [
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     id: 'ig-1',
-    image: 'hero',
-    likes: '1,420',
-    comments: '84',
-    caption: 'Естетика в кожній деталі. Створюємо візуал, який говорить сам за себе. #chirvacm #contentcreator',
+    image: 'bts-1',
+    caption: 'Бекстейдж: зйомка fashion-контенту на вулиці',
     type: 'photo',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-2',
-    image: 'fashion',
-    likes: '2,890',
-    comments: '132',
-    caption: 'Morning walk in Paris style. Як правильно знімати fashion reels для брендів одягу.',
+    image: 'work-trench',
+    caption: 'Trench Coat Story — fashion Reels',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-3',
-    image: 'skincare',
-    likes: '1,950',
-    comments: '67',
-    caption: 'Гра світла та тіні для косметичного бренду. Коли продукт виглядає преміально.',
-    type: 'photo',
+    image: 'work-leather',
+    caption: 'Leather Mood — fashion Reels',
+    type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-4',
-    image: 'lifestyle',
-    likes: '3,110',
-    comments: '148',
-    caption: 'Matcha & Kinfolk mood. Естетичні деталі для щоденного натхнення.',
+    image: 'bts-2',
+    caption: 'Бекстейдж: зйомка Reels на телефон',
     type: 'photo',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-5',
-    image: 'ugc',
-    likes: '4,200',
-    comments: '210',
-    caption: 'Чому UGC контент продає в 3 рази ефективніше за звичайні макети? Розбір кейсу.',
+    image: 'work-studio',
+    caption: 'Studio Session — бекстейдж фотосесії',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   },
   {
     id: 'ig-6',
-    image: 'about',
-    likes: '2,340',
-    comments: '98',
-    caption: 'Behind the scenes: день з життя контент-мейкерки. Студія, концепт і світло.',
+    image: 'work-enduro',
+    caption: 'Enduro Forest Ride — lifestyle Reels',
     type: 'reel',
     url: 'https://www.instagram.com/chirva.cm/'
   }

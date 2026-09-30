@@ -1,23 +1,27 @@
 import { useState, useCallback } from 'react';
 import { Play, Eye, ArrowUpRight } from 'lucide-react';
 import { PORTFOLIO_ITEMS } from '../data/portfolioData';
-import type { PortfolioItem } from '../types';
+import type { PortfolioItem, PortfolioCategory } from '../types';
 import { LightboxModal } from './LightboxModal';
 import { ScrollReveal } from './ScrollReveal';
 import { Photo } from './Photo';
 
-type FilterId = 'all' | PortfolioItem['category'];
+type FilterId = 'all' | PortfolioCategory;
 
+const CATEGORY_LABELS: Record<PortfolioCategory, string> = {
+  fashion: 'Fashion',
+  lifestyle: 'Lifestyle',
+  studio: 'Студія',
+  events: 'Події',
+};
+
+// Only categories that actually have works get a tab — no empty filters
 const FILTER_TABS: { id: FilterId; label: string }[] = [
   { id: 'all', label: 'Всі роботи' },
-  { id: 'reels', label: 'Reels & Відео' },
-  { id: 'ugc', label: 'UGC Content' },
-  { id: 'photo', label: 'Предметне фото' },
-  { id: 'lifestyle', label: 'Lifestyle' },
+  ...(Object.keys(CATEGORY_LABELS) as PortfolioCategory[])
+    .filter((c) => PORTFOLIO_ITEMS.some((item) => item.category === c))
+    .map((c) => ({ id: c, label: CATEGORY_LABELS[c] })),
 ];
-
-const isVideoWork = (item: PortfolioItem) =>
-  item.category === 'reels' || item.category === 'ugc' || Boolean(item.videoUrl);
 
 export const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState<FilterId>('all');
@@ -116,7 +120,7 @@ export const Portfolio: React.FC = () => {
                     </div>
 
                     {/* Play badge */}
-                    {isVideoWork(item) && (
+                    {item.video && (
                       <div aria-hidden="true" className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 rounded-full bg-black/65 backdrop-blur-sm">
                         <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-white text-white" />
                       </div>

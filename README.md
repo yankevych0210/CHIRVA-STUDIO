@@ -66,13 +66,21 @@ SEO-заголовок та опис — `src/seo.ts` та `index.html`.
 
 ### Фото
 
-1. Покладіть оригінал (PNG/JPG) у `assets/originals/`, наприклад `assets/originals/newwork.png`.
+1. Покладіть оригінал (PNG/JPG) у `assets/originals/`, наприклад `assets/originals/newwork.jpg`.
 2. Запустіть `npm run images` (потрібен `cwebp`: `brew install webp`) — з'являться `public/images/newwork-480.webp` та `-960.webp`.
-3. Додайте назву в `PhotoName` та `PHOTO_SIZE` у `src/lib/photos.ts` і використайте `image: 'newwork'` у даних.
+3. Додайте назву в `PhotoName` та `PHOTO_SIZE` у `src/lib/photos.ts`.
 
 ### Відео у портфоліо
 
-Покладіть MP4 у `public/videos/` і вкажіть `videoUrl: '/videos/work.mp4'` у роботі — воно відтворюватиметься в лайтбоксі.
+1. Покладіть оригінал (MOV/MP4 з телефону, хоч 4K) у `assets/originals/video/`, напр. `work-new.mov`.
+   Ця папка **не потрапляє в git** (файли по 100–200 МБ) — оригінали зберігаються лише локально.
+2. `npm run videos work-new` (потрібен `ffmpeg`: `brew install ffmpeg`), потім `npm run images`. Скрипт створює:
+   - `public/videos/work-new.hevc.mp4` — H.265 1080p (Safari/iOS, Chrome, Edge);
+   - `public/videos/work-new.mp4` — H.264 1080p, запасний формат для решти браузерів;
+   - постер-кадр → `public/images/work-new-480/960.webp`.
+   Якість задається CRF 23 (VMAF ≈ 95–96 — різниці з оригіналом не видно), файли на 85–90% легші.
+3. Додайте роботу в `PORTFOLIO_ITEMS` (`src/data/portfolioData.ts`): `video: 'work-new'`, `image: 'work-new'`,
+   `orientation: 'vertical' | 'horizontal'`, `duration` — і назву в `src/lib/photos.ts`.
 
 ### Фавікон
 

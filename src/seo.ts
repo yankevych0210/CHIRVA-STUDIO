@@ -1,4 +1,4 @@
-import { CREATOR_INFO, SERVICES } from './data/portfolioData';
+import { CREATOR_INFO, SERVICES, PORTFOLIO_ITEMS } from './data/portfolioData';
 
 // Everything search engines and social previews see, generated from site data.
 // Injected into <head> at build time by scripts/prerender.mjs.
@@ -11,6 +11,9 @@ export const SEO = {
   ogImageAlt: 'The Video by Evhenia Chirva — Reels, UGC та фото, які закохують у бренд',
   locale: 'uk_UA',
 };
+
+/** Date the portfolio videos were published on the site (schema.org uploadDate) */
+const VIDEOS_PUBLISHED = '2026-09-30';
 
 const escapeAttr = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -69,7 +72,22 @@ function structuredData(siteUrl: string) {
     ...(url && { url }),
   };
 
-  return { '@context': 'https://schema.org', '@graph': [website, person, business] };
+  // Portfolio videos — eligible for Google video results (needs absolute URLs)
+  const videos = siteUrl
+    ? PORTFOLIO_ITEMS.filter((item) => item.video).map((item) => ({
+        '@type': 'VideoObject',
+        name: item.title,
+        description: item.description,
+        thumbnailUrl: `${siteUrl}/images/${item.image}-960.webp`,
+        contentUrl: `${siteUrl}/videos/${item.video}.mp4`,
+        uploadDate: VIDEOS_PUBLISHED,
+        ...(item.duration && { duration: item.duration }),
+        inLanguage: 'uk',
+        creator: { '@id': id('person') },
+      }))
+    : [];
+
+  return { '@context': 'https://schema.org', '@graph': [website, person, business, ...videos] };
 }
 
 /** Head tags that depend on the production domain (canonical, absolute OG urls, JSON-LD). */

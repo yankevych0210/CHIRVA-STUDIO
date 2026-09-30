@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "images": "./scripts/optimize-images.sh"
+    "images": "./scripts/optimize-images.sh",
+    "videos": "./scripts/optimize-videos.sh"
   },
   "dependencies": {
     "@fontsource-variable/cormorant-garamond": "^5.3.0",

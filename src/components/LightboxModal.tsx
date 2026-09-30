@@ -54,6 +54,20 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
   if (!item) return null;
 
   const titleId = `lightbox-title-${item.id}`;
+  const layout = !item.video ? 'image' : item.orientation === 'horizontal' ? 'horizontal' : 'vertical';
+
+  const containerLayout = {
+    image: 'flex-col md:flex-row',
+    vertical: 'flex-col md:flex-row',
+    horizontal: 'flex-col',
+  }[layout];
+
+  // Videos are shown whole (object-contain) in their native aspect ratio
+  const mediaLayout = {
+    image: 'w-full md:w-1/2 h-[clamp(170px,32dvh,300px)] md:h-auto md:min-h-[460px]',
+    vertical: 'w-full h-[min(56dvh,520px)] md:w-auto md:h-[min(86vh,780px)] md:aspect-[9/16]',
+    horizontal: 'w-full aspect-video',
+  }[layout];
 
   return (
     <div
@@ -66,7 +80,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-4xl max-h-[92dvh] sm:max-h-[90vh] bg-[#FAF8F5] rounded-[22px] sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-white/20 animate-modal-in"
+        className={`relative w-full ${layout === 'horizontal' ? 'max-w-3xl' : 'max-w-4xl'} max-h-[92dvh] sm:max-h-[90vh] bg-[#FAF8F5] rounded-[22px] sm:rounded-3xl overflow-hidden shadow-2xl flex ${containerLayout} border border-white/20 animate-modal-in`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -81,19 +95,26 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
         </button>
 
         {/* Media Column (Left / Top on mobile) */}
-        <div className="w-full md:w-1/2 bg-black flex items-center justify-center relative h-[clamp(170px,32dvh,300px)] md:h-auto md:min-h-[460px] shrink-0 overflow-hidden">
-          {item.videoUrl ? (
+        <div className={`${mediaLayout} bg-black flex items-center justify-center relative shrink-0 overflow-hidden`}>
+          {item.video ? (
+            // Starts muted (browsers block autoplay with sound); native controls
+            // give sound, pause, seeking and fullscreen on every platform.
             <video
-              src={item.videoUrl}
+              key={item.id}
               poster={photoUrl(item.image)}
               autoPlay
               muted
               loop
               playsInline
+              controls
               preload="metadata"
               aria-label={item.title}
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-contain"
+            >
+              {/* The browser picks the first format it can play */}
+              <source src={`/videos/${item.video}.hevc.mp4`} type='video/mp4; codecs="hvc1"' />
+              <source src={`/videos/${item.video}.mp4`} type="video/mp4" />
+            </video>
           ) : (
             <Photo
               name={item.image}
@@ -114,7 +135,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ item, onClose }) =
         </div>
 
         {/* Details Column (Right / Bottom on mobile) */}
-        <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-between overflow-y-auto overscroll-contain space-y-3 sm:space-y-4 md:space-y-6">
+        <div className={`${layout === 'image' ? 'md:w-1/2' : 'md:flex-1'} w-full min-w-0 min-h-0 p-4 sm:p-6 md:p-8 flex flex-col justify-between overflow-y-auto overscroll-contain space-y-3 sm:space-y-4 md:space-y-6`}>
           <div className="space-y-2 sm:space-y-3">
 
             {/* Category & Brand Tag */}
