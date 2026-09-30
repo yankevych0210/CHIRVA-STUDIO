@@ -8,12 +8,6 @@ export type PhotoName =
   | 'portrait'
   | 'bts-1'
   | 'bts-2'
-  | 'ig-1'
-  | 'ig-2'
-  | 'ig-3'
-  | 'ig-4'
-  | 'ig-5'
-  | 'ig-6'
   | 'work-trench'
   | 'work-leather'
   | 'work-studio'
@@ -22,7 +16,6 @@ export type PhotoName =
   | 'work-christening';
 
 const HORIZONTAL_VIDEO = { width: 960, height: 540 }; // 16:9 poster
-const INSTAGRAM_TILE = { width: 960, height: 960 }; // square cover from the Instagram grid
 
 /** Intrinsic size of the 960w file — reserves space and prevents layout shift. */
 export const PHOTO_SIZE: Record<PhotoName, { width: number; height: number }> = {
@@ -30,12 +23,6 @@ export const PHOTO_SIZE: Record<PhotoName, { width: number; height: number }> = 
   portrait: { width: 960, height: 1693 },
   'bts-1': { width: 960, height: 1440 },
   'bts-2': { width: 960, height: 1440 },
-  'ig-1': INSTAGRAM_TILE,
-  'ig-2': INSTAGRAM_TILE,
-  'ig-3': INSTAGRAM_TILE,
-  'ig-4': INSTAGRAM_TILE,
-  'ig-5': INSTAGRAM_TILE,
-  'ig-6': INSTAGRAM_TILE,
   // Custom covers chosen by the client (photos, not video frames)
   'work-trench': { width: 960, height: 1693 },
   'work-leather': { width: 960, height: 1693 },

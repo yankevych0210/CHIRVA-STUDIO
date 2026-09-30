@@ -55,10 +55,3 @@ export interface CooperationStep {
   description: string;
 }
 
-export interface InstagramPost {
-  id: string;
-  image: PhotoName;
-  caption: string; // used as the accessible label of the tile
-  type: 'reel' | 'photo';
-  url: string;
-}

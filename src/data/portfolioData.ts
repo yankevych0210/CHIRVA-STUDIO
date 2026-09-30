@@ -1,4 +1,4 @@
-import type { PortfolioItem, ServiceItem, PricingPlan, CooperationStep, InstagramPost } from '../types';
+import type { PortfolioItem, ServiceItem, PricingPlan, CooperationStep } from '../types';
 
 export const CREATOR_INFO = {
   /**
@@ -211,49 +211,3 @@ export const COOPERATION_STEPS: CooperationStep[] = [
   }
 ];
 
-// Covers of the latest 6 posts on @chirva.cm (cropped from the profile grid).
-// Replace with a live feed once the Instagram connection is set up.
-export const INSTAGRAM_POSTS: InstagramPost[] = [
-  {
-    id: 'ig-1',
-    image: 'ig-1',
-    caption: 'Fashion-зйомка: тренч і ретро-велосипед',
-    type: 'photo',
-    url: 'https://www.instagram.com/chirva.cm/'
-  },
-  {
-    id: 'ig-2',
-    image: 'ig-2',
-    caption: 'Студійна чорно-біла зйомка',
-    type: 'reel',
-    url: 'https://www.instagram.com/chirva.cm/'
-  },
-  {
-    id: 'ig-3',
-    image: 'ig-3',
-    caption: 'Fashion Reels: тренч біля кав’ярні',
-    type: 'reel',
-    url: 'https://www.instagram.com/chirva.cm/'
-  },
-  {
-    id: 'ig-4',
-    image: 'ig-4',
-    caption: 'Fashion Reels: місто та шкіряна куртка',
-    type: 'reel',
-    url: 'https://www.instagram.com/chirva.cm/'
-  },
-  {
-    id: 'ig-5',
-    image: 'ig-5',
-    caption: 'Lifestyle Reels: ендуро в лісі',
-    type: 'reel',
-    url: 'https://www.instagram.com/chirva.cm/'
-  },
-  {
-    id: 'ig-6',
-    image: 'ig-6',
-    caption: 'Reels з події: вогні та феєрверки',
-    type: 'reel',
-    url: 'https://www.instagram.com/chirva.cm/'
-  }
-];
